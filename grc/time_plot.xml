@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <block>
-  <name>Burst Plotter</name>
-  <key>pyqt_plotter</key>
+  <name>PyQT Real Time Plot</name>
+  <key>pyqt_time_plot</key>
   <category>pyqt</category>
   <import>import pyqt</import>
   <make>#set $win = 'self._%s_win'%$id
-burst.plotter()
+pyqt.time_plot()
 self._$(id)_win = self.$(id);
 $(gui_hint()($win))
 </make>
@@ -19,7 +19,7 @@ $(gui_hint()($win))
   </param>
 
   <sink>
-    <name>cpdus</name>
+    <name>pdus</name>
     <type>message</type>
     <optional>1</optional>
   </sink>

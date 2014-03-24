@@ -42,12 +42,17 @@ if _RTLD_GLOBAL != 0:
 
 
 # import swig generated symbols into the pyqt namespace
-from pyqt_swig import *
+#from pyqt_swig import *
 
 # import any pure python here
 #
 
-from plotter import *;
+from plotter_base import *;
+from const_plot import *;
+from ctime_plot import *;
+from cpsd_plot import *;
+from time_plot import *;
+from cpower_plot import *;
 
 # ----------------------------------------------------------------
 # Tail of workaround

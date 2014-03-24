@@ -18,6 +18,10 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
-    pyqt_plotter.xml
+    time_plot.xml
+    const_plot.xml
+    ctime_plot.xml
+    cpsd_plot.xml
+    cpower_plot.xml
     DESTINATION share/gnuradio/grc/blocks
 )

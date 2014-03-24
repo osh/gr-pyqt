@@ -31,7 +31,12 @@ endif()
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    plotter.py
+    const_plot.py
+    ctime_plot.py
+    cpsd_plot.py
+    time_plot.py
+    cpower_plot.py
+    plotter_base.py
     DESTINATION ${GR_PYTHON_DIR}/pyqt
 )
 
