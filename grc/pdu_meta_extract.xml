@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<block>
+  <name>PDU Meta Value Extractor</name>
+  <key>pyqt_pdu_meta_extract</key>
+  <category>pyqt</category>
+  <import>import pyqt</import>
+  <import>import pmt</import>
+  <make>pyqt.pdu_meta_extract($k)</make>
+
+  <param>
+    <name>Dict Key</name>
+    <key>k</key>
+    <value>pmt.intern("key")</value>
+    <type>raw</type>
+  </param>
+
+  <sink>
+    <name>pdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+  
+  <source>
+    <name>values</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

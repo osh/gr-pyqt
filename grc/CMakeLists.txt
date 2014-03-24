@@ -19,9 +19,11 @@
 
 install(FILES
     time_plot.xml
+    value_plot.xml
     const_plot.xml
     ctime_plot.xml
     cpsd_plot.xml
     cpower_plot.xml
+    pdu_meta_extract.xml
     DESTINATION share/gnuradio/grc/blocks
 )

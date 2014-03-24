@@ -33,10 +33,12 @@ GR_PYTHON_INSTALL(
     __init__.py
     const_plot.py
     ctime_plot.py
+    value_plot.py
     cpsd_plot.py
     time_plot.py
     cpower_plot.py
     plotter_base.py
+    pdu_meta_extract.py
     DESTINATION ${GR_PYTHON_DIR}/pyqt
 )
 
