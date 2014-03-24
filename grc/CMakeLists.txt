@@ -18,5 +18,6 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
+    pyqt_plotter.xml
     DESTINATION share/gnuradio/grc/blocks
 )

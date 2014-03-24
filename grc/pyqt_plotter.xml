@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <block>
   <name>Burst Plotter</name>
-  <key>burst_plotter</key>
-  <category>burst</category>
-  <import>import burst</import>
+  <key>pyqt_plotter</key>
+  <category>pyqt</category>
+  <import>import pyqt</import>
   <make>#set $win = 'self._%s_win'%$id
 burst.plotter()
 self._$(id)_win = self.$(id);
@@ -17,7 +17,6 @@ $(gui_hint()($win))
     <type>gui_hint</type>
     <hide>part</hide>
   </param>
-
 
   <sink>
     <name>cpdus</name>

@@ -10,7 +10,7 @@ from PyQt4.Qwt5.anynumpy import *
 import pmt
 
 class plotter(gr.sync_block, Qwt.QwtPlot):
-    __pyqtSignals__ = ("newStatuses(int)")
+    __pyqtSignals__ = ("updatePlot(int)")
 
     def __init__(self, *args):
         gr.sync_block.__init__(self,"plotter",[],[])
@@ -37,7 +37,7 @@ class plotter(gr.sync_block, Qwt.QwtPlot):
         self.set_msg_handler(pmt.intern("cpdus"), self.handler);
 
         QtCore.QObject.connect(self,
-                       QtCore.SIGNAL("newStatuses(int)"),
+                       QtCore.SIGNAL("updatePlot(int)"),
                        self.do_plot)
 
     def alignScales(self):
@@ -66,7 +66,7 @@ class plotter(gr.sync_block, Qwt.QwtPlot):
         # trigger update
         self.x = numpy.real(x);
         self.y = numpy.imag(x);
-        self.emit(QtCore.SIGNAL("newStatuses(int)"), 0)
+        self.emit(QtCore.SIGNAL("updatePlot(int)"), 0)
 
     def work(self, input_items, output_items):
         pass

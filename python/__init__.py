@@ -47,6 +47,8 @@ from pyqt_swig import *
 # import any pure python here
 #
 
+from plotter import *;
+
 # ----------------------------------------------------------------
 # Tail of workaround
 if _RTLD_GLOBAL != 0:
