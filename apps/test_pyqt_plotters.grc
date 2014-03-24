@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='ASCII'?>
 <flow_graph>
-  <timestamp>Sun Mar 23 22:27:14 2014</timestamp>
+  <timestamp>Sun Mar 23 20:39:12 2014</timestamp>
   <block>
     <key>options</key>
     <param>
@@ -76,7 +76,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(10, 170)</value>
+      <value>(10, 114)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -127,7 +127,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(169, 182)</value>
+      <value>(230, 51)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -174,147 +174,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(445, 190)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_tagged_stream_to_pdu</key>
-    <param>
-      <key>id</key>
-      <value>blocks_tagged_stream_to_pdu_0_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>tag</key>
-      <value>packet_len</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(680, 764)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>pyqt_time_plot</key>
-    <param>
-      <key>id</key>
-      <value>pyqt_time_plot_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1034, 910)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_tagged_stream_to_pdu</key>
-    <param>
-      <key>id</key>
-      <value>blocks_tagged_stream_to_pdu_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>tag</key>
-      <value>packet_len</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(672, 905)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_complex_to_float</key>
-    <param>
-      <key>id</key>
-      <value>blocks_complex_to_float_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(382, 911)</value>
+      <value>(506, 59)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -381,11 +241,121 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(697, 145)</value>
+      <value>(758, 14)</value>
     </param>
     <param>
       <key>_rotation</key>
       <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>channels_selective_fading_model</key>
+    <param>
+      <key>id</key>
+      <value>channels_selective_fading_model_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>N</key>
+      <value>8</value>
+    </param>
+    <param>
+      <key>fDTs</key>
+      <value>2.0/samp_rate</value>
+    </param>
+    <param>
+      <key>LOS</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>K</key>
+      <value>4.0</value>
+    </param>
+    <param>
+      <key>seed</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>delays</key>
+      <value>0.0,0.1,1.3</value>
+    </param>
+    <param>
+      <key>mags</key>
+      <value>1,0.99,0.97</value>
+    </param>
+    <param>
+      <key>ntaps</key>
+      <value>8</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(819, 185)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_stream_to_tagged_stream</key>
+    <param>
+      <key>id</key>
+      <value>blocks_stream_to_tagged_stream_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>packet_len</key>
+      <value>1000</value>
+    </param>
+    <param>
+      <key>len_tag_key</key>
+      <value>"packet_len"</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(523, 230)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
     </param>
   </block>
   <block>
@@ -468,7 +438,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(103, 616)</value>
+      <value>(14, 353)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -476,46 +446,18 @@
     </param>
   </block>
   <block>
-    <key>channels_selective_fading_model</key>
+    <key>blocks_complex_to_float</key>
     <param>
       <key>id</key>
-      <value>channels_selective_fading_model_0</value>
+      <value>blocks_complex_to_float_0</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>N</key>
-      <value>8</value>
-    </param>
-    <param>
-      <key>fDTs</key>
-      <value>2.0/samp_rate</value>
-    </param>
-    <param>
-      <key>LOS</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>K</key>
-      <value>4.0</value>
-    </param>
-    <param>
-      <key>seed</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>delays</key>
-      <value>0.0,0.1,1.3</value>
-    </param>
-    <param>
-      <key>mags</key>
-      <value>1,0.99,0.97</value>
-    </param>
-    <param>
-      <key>ntaps</key>
-      <value>8</value>
+      <key>vlen</key>
+      <value>1</value>
     </param>
     <param>
       <key>affinity</key>
@@ -531,11 +473,89 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(742, 365)</value>
+      <value>(271, 698)</value>
     </param>
     <param>
       <key>_rotation</key>
-      <value>180</value>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_tagged_stream_to_pdu</key>
+    <param>
+      <key>id</key>
+      <value>blocks_tagged_stream_to_pdu_0_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>tag</key>
+      <value>packet_len</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(569, 551)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_tagged_stream_to_pdu</key>
+    <param>
+      <key>id</key>
+      <value>blocks_tagged_stream_to_pdu_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>tag</key>
+      <value>packet_len</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(561, 692)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
     </param>
   </block>
   <block>
@@ -558,7 +578,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1011, 571)</value>
+      <value>(1028, 358)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -585,7 +605,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1047, 641)</value>
+      <value>(1028, 405)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -612,7 +632,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1046, 721)</value>
+      <value>(1027, 451)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -639,7 +659,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1048, 814)</value>
+      <value>(1028, 502)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -647,30 +667,99 @@
     </param>
   </block>
   <block>
-    <key>blocks_stream_to_tagged_stream</key>
+    <key>pyqt_time_plot</key>
     <param>
       <key>id</key>
-      <value>blocks_stream_to_tagged_stream_0</value>
+      <value>pyqt_time_plot_0</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>type</key>
-      <value>complex</value>
+      <key>gui_hint</key>
+      <value></value>
     </param>
     <param>
-      <key>vlen</key>
-      <value>1</value>
+      <key>affinity</key>
+      <value></value>
     </param>
     <param>
-      <key>packet_len</key>
-      <value>1000</value>
+      <key>_coordinate</key>
+      <value>(1033, 697)</value>
     </param>
     <param>
-      <key>len_tag_key</key>
-      <value>"packet_len"</value>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>pyqt_value_plot</key>
+    <param>
+      <key>id</key>
+      <value>pyqt_value_plot_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(62, 845)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+  </block>
+  <block>
+    <key>pyqt_value_hist</key>
+    <param>
+      <key>id</key>
+      <value>pyqt_value_hist_1</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(15, 939)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+  </block>
+  <block>
+    <key>pyqt_pdu_meta_extract</key>
+    <param>
+      <key>id</key>
+      <value>pyqt_pdu_meta_extract_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>k</key>
+      <value>pmt.intern("rx_time")</value>
     </param>
     <param>
       <key>affinity</key>
@@ -686,7 +775,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(446, 411)</value>
+      <value>(494, 877)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -694,14 +783,20 @@
     </param>
   </block>
   <connection>
-    <source_block_id>analog_fastnoise_source_x_0</source_block_id>
-    <sink_block_id>blocks_throttle_0</sink_block_id>
+    <source_block_id>blocks_stream_to_tagged_stream_0</source_block_id>
+    <sink_block_id>qtgui_time_sink_x_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_stream_to_tagged_stream_0</source_block_id>
-    <sink_block_id>qtgui_time_sink_x_0</sink_block_id>
+    <source_block_id>low_pass_filter_0</source_block_id>
+    <sink_block_id>channels_selective_fading_model_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_fastnoise_source_x_0</source_block_id>
+    <sink_block_id>blocks_throttle_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -712,20 +807,32 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_tagged_stream_to_pdu_0_0</source_block_id>
-    <sink_block_id>pyqt_cpsd_plot_0</sink_block_id>
-    <source_key>pdus</source_key>
-    <sink_key>cpdus</sink_key>
+    <source_block_id>channels_selective_fading_model_0</source_block_id>
+    <sink_block_id>blocks_stream_to_tagged_stream_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_complex_to_float_0</source_block_id>
+    <sink_block_id>blocks_tagged_stream_to_pdu_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_stream_to_tagged_stream_0</source_block_id>
+    <sink_block_id>blocks_complex_to_float_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_stream_to_tagged_stream_0</source_block_id>
+    <sink_block_id>blocks_tagged_stream_to_pdu_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_tagged_stream_to_pdu_0_0</source_block_id>
-    <sink_block_id>pyqt_cpower_plot_0</sink_block_id>
-    <source_key>pdus</source_key>
-    <sink_key>cpdus</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_tagged_stream_to_pdu_0_0</source_block_id>
-    <sink_block_id>pyqt_const_plot_0</sink_block_id>
+    <sink_block_id>pyqt_ctime_plot_0</sink_block_id>
     <source_key>pdus</source_key>
     <sink_key>cpdus</sink_key>
   </connection>
@@ -737,38 +844,38 @@
   </connection>
   <connection>
     <source_block_id>blocks_tagged_stream_to_pdu_0_0</source_block_id>
-    <sink_block_id>pyqt_ctime_plot_0</sink_block_id>
+    <sink_block_id>pyqt_const_plot_0</sink_block_id>
     <source_key>pdus</source_key>
     <sink_key>cpdus</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_stream_to_tagged_stream_0</source_block_id>
-    <sink_block_id>blocks_tagged_stream_to_pdu_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
+    <source_block_id>blocks_tagged_stream_to_pdu_0_0</source_block_id>
+    <sink_block_id>pyqt_cpower_plot_0</sink_block_id>
+    <source_key>pdus</source_key>
+    <sink_key>cpdus</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_stream_to_tagged_stream_0</source_block_id>
-    <sink_block_id>blocks_complex_to_float_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
+    <source_block_id>blocks_tagged_stream_to_pdu_0_0</source_block_id>
+    <sink_block_id>pyqt_cpsd_plot_0</sink_block_id>
+    <source_key>pdus</source_key>
+    <sink_key>cpdus</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_complex_to_float_0</source_block_id>
-    <sink_block_id>blocks_tagged_stream_to_pdu_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
+    <source_block_id>blocks_tagged_stream_to_pdu_0</source_block_id>
+    <sink_block_id>pyqt_pdu_meta_extract_0</sink_block_id>
+    <source_key>pdus</source_key>
+    <sink_key>pdus</sink_key>
   </connection>
   <connection>
-    <source_block_id>channels_selective_fading_model_0</source_block_id>
-    <sink_block_id>blocks_stream_to_tagged_stream_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
+    <source_block_id>pyqt_pdu_meta_extract_0</source_block_id>
+    <sink_block_id>pyqt_value_plot_0</sink_block_id>
+    <source_key>values</source_key>
+    <sink_key>reals</sink_key>
   </connection>
   <connection>
-    <source_block_id>low_pass_filter_0</source_block_id>
-    <sink_block_id>channels_selective_fading_model_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
+    <source_block_id>pyqt_pdu_meta_extract_0</source_block_id>
+    <sink_block_id>pyqt_value_hist_1</sink_block_id>
+    <source_key>values</source_key>
+    <sink_key>reals</sink_key>
   </connection>
 </flow_graph>

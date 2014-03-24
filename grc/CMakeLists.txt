@@ -20,6 +20,7 @@
 install(FILES
     time_plot.xml
     value_plot.xml
+    value_hist.xml
     const_plot.xml
     ctime_plot.xml
     cpsd_plot.xml

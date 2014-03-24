@@ -53,6 +53,7 @@ from ctime_plot import *;
 from cpsd_plot import *;
 from time_plot import *;
 from value_plot import *;
+from value_hist import *;
 from cpower_plot import *;
 from pdu_meta_extract import *;
 

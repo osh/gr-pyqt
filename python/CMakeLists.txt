@@ -34,6 +34,7 @@ GR_PYTHON_INSTALL(
     const_plot.py
     ctime_plot.py
     value_plot.py
+    value_hist.py
     cpsd_plot.py
     time_plot.py
     cpower_plot.py
