@@ -22,7 +22,7 @@ class cpower_plot(plotter_base):
         x = x * x.conjugate();
 
         # pass data
-        self.curve_data[0] = (numpy.linspace(1,len(x),len(x)), numpy.real(x));
+        self.curve_data[0] = (numpy.linspace(1,len(x),len(x)), 10*numpy.log10(numpy.real(x)));
 
         # trigger update
         self.emit(QtCore.SIGNAL("updatePlot(int)"), 0)
