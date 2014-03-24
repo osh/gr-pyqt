@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<block>
+  <name>Burst Plotter</name>
+  <key>burst_plotter</key>
+  <category>burst</category>
+  <import>import burst</import>
+  <make>#set $win = 'self._%s_win'%$id
+burst.plotter()
+self._$(id)_win = self.$(id);
+$(gui_hint()($win))
+</make>
+
+  <param>
+    <name>GUI Hint</name>
+    <key>gui_hint</key>
+    <value></value>
+    <type>gui_hint</type>
+    <hide>part</hide>
+  </param>
+
+
+  <sink>
+    <name>cpdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+</block>
