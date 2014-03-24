@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 from plotter_base import *
 class value_plot(plotter_base):
-    def __init__(self, *args):
-        plotter_base.__init__(self, *args)
+    def __init__(self, label="", *args):
+        plotter_base.__init__(self, blkname="value_plot", label=label, *args)
         self.message_port_register_in(pmt.intern("reals"));
         self.set_msg_handler(pmt.intern("reals"), self.handler);
 

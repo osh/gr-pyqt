@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 from plotter_base import *
 class time_plot(plotter_base):
-    def __init__(self, *args):
-        plotter_base.__init__(self, *args)
+    def __init__(self, label="", *args):
+        plotter_base.__init__(self, blkname="time_plot", label=label, *args)
         self.message_port_register_in(pmt.intern("pdus"));
         self.set_msg_handler(pmt.intern("pdus"), self.handler);
 

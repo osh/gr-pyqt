@@ -12,17 +12,23 @@ import pmt
 class plotter_base(gr.sync_block, Qwt.QwtPlot):
     __pyqtSignals__ = ("updatePlot(int)")
 
-    def __init__(self, *args):
-        gr.sync_block.__init__(self,"pyqt_plotter",[],[])
+    def __init__(self, blkname="pyqt_plotter", label="", *args):
+        gr.sync_block.__init__(self,blkname,[],[])
         Qwt.QwtPlot.__init__(self, *args)
+
+        # set up label if desired
+        if not label == "":
+            self.setTitle(label)
 
         # set up background etc
         self.setCanvasBackground(Qt.Qt.black)
         self.alignScales()
 
+        # curve storage
         self.curves = [];
         self.curve_data = [];
 
+        # connect the plot callback signal
         QtCore.QObject.connect(self,
                        QtCore.SIGNAL("updatePlot(int)"),
                        self.do_plot)

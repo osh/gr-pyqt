@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 from plotter_base import *
 class const_plot(plotter_base):
-    def __init__(self, *args):
-        plotter_base.__init__(self, *args)
+    def __init__(self, label="", *args):
+        plotter_base.__init__(self, blkname="const_plot", label=label, *args)
         self.message_port_register_in(pmt.intern("cpdus"));
         self.set_msg_handler(pmt.intern("cpdus"), self.handler);
-
 
         # set up curve
         curve = Qwt.QwtPlotCurve("Plot 0");

@@ -2,8 +2,8 @@
 from plotter_base import *
 import pylab
 class cpsd_plot(plotter_base):
-    def __init__(self, *args):
-        plotter_base.__init__(self, *args)
+    def __init__(self, label="", *args):
+        plotter_base.__init__(self, blkname="cpsd_plot", label=label, *args)
         self.message_port_register_in(pmt.intern("cpdus"));
         self.set_msg_handler(pmt.intern("cpdus"), self.handler);
 

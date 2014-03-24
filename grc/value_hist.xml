@@ -5,7 +5,7 @@
   <category>pyqt</category>
   <import>import pyqt</import>
   <make>#set $win = 'self._%s_win'%$id
-pyqt.value_hist()
+pyqt.value_hist($l)
 self._$(id)_win = self.$(id);
 $(gui_hint()($win))
 </make>
@@ -16,6 +16,13 @@ $(gui_hint()($win))
     <value></value>
     <type>gui_hint</type>
     <hide>part</hide>
+  </param>
+
+  <param>
+    <name>Label</name>
+    <key>l</key>
+    <value></value>
+    <type>string</type>
   </param>
 
   <sink>
