@@ -26,5 +26,7 @@ install(FILES
     cpsd_plot.xml
     cpower_plot.xml
     pdu_meta_extract.xml
+    text_input.xml
+    text_output.xml
     DESTINATION share/gnuradio/grc/blocks
 )

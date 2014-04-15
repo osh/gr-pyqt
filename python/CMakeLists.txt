@@ -40,6 +40,8 @@ GR_PYTHON_INSTALL(
     cpower_plot.py
     plotter_base.py
     pdu_meta_extract.py
+    text_input.py
+    text_output.py
     DESTINATION ${GR_PYTHON_DIR}/pyqt
 )
 

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<block>
+  <name>PyQT Text Output</name>
+  <key>pyqt_text_output</key>
+  <category>pyqt</category>
+  <import>import pyqt</import>
+  <make>#set $win = 'self._%s_win'%$id
+pyqt.text_output()
+self._$(id)_win = self.$(id);
+$(gui_hint()($win))
+</make>
+
+  <param>
+    <name>GUI Hint</name>
+    <key>gui_hint</key>
+    <value></value>
+    <type>gui_hint</type>
+    <hide>part</hide>
+  </param>
+
+  <sink>
+    <name>pdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+</block>
