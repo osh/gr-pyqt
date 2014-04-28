@@ -19,6 +19,7 @@
 
 install(FILES
     time_plot.xml
+    time_hist.xml
     value_plot.xml
     value_hist.xml
     const_plot.xml

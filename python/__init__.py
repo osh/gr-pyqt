@@ -52,6 +52,7 @@ from const_plot import *;
 from ctime_plot import *;
 from cpsd_plot import *;
 from time_plot import *;
+from time_hist import *;
 from value_plot import *;
 from value_hist import *;
 from cpower_plot import *;
