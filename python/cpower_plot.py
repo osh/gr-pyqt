@@ -39,10 +39,10 @@ class cpower_plot(plotter_base):
         meta = pmt.car(msg);
         samples = pmt.cdr(msg);
         x = numpy.array(pmt.c32vector_elements(samples), dtype=numpy.complex64)
-        x = x * x.conjugate();
+        x = numpy.real(x * x.conjugate()) + 1e-10; # add small const floor to avoid -inf log values
 
         # pass data
-        self.curve_data[0] = (numpy.linspace(1,len(x),len(x)), 10*numpy.log10(numpy.real(x)));
+        self.curve_data[0] = (numpy.linspace(1,len(x),len(x)), 10*numpy.log10(x));
 
         # trigger update
         self.emit(QtCore.SIGNAL("updatePlot(int)"), 0)
