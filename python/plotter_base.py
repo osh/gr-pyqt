@@ -67,9 +67,14 @@ class plotter_base(gr.sync_block, Qwt.QwtPlot):
 
     def do_plot(self, a):
         # set curve data for known curves
-        for i in range(0,min(len(self.curves),len(self.curve_data))):
-            (x,y) = (self.curve_data[i][0], self.curve_data[i][1]);
-            self.curves[i].setData(x,y);
+        for cd in self.curve_data:
+            if(numpy.isnan(numpy.sum(cd[0]))): 
+                return
+            if(numpy.isnan(numpy.sum(cd[1]))): 
+                return
+        
+        nchan = min(len(self.curves),len(self.curve_data))
+        map(lambda x: self.curves[x].setData(self.curve_data[x][0], self.curve_data[x][1]), range(0,nchan));
         self.replot();
         self.show();
 
