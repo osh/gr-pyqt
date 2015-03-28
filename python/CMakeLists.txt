@@ -43,6 +43,7 @@ GR_PYTHON_INSTALL(
     pdu_meta_extract.py
     text_input.py
     text_output.py
+    meta_text_output.py
     DESTINATION ${GR_PYTHON_DIR}/pyqt
 )
 

@@ -59,6 +59,7 @@ from cpower_plot import *;
 from pdu_meta_extract import *;
 from text_input import *;
 from text_output import *;
+from meta_text_output import *;
 
 # ----------------------------------------------------------------
 # Tail of workaround

@@ -29,5 +29,6 @@ install(FILES
     pdu_meta_extract.xml
     text_input.xml
     text_output.xml
+    meta_text_output.xml
     DESTINATION share/gnuradio/grc/blocks
 )
