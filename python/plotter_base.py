@@ -57,6 +57,14 @@ class plotter_base(gr.sync_block, Qwt.QwtPlot):
                        QtCore.SIGNAL("updatePlot(int)"),
                        self.do_plot)
 
+        # set up zoomer
+        self.zoomer = Qwt.QwtPlotZoomer(Qwt.QwtPlot.xBottom,
+                                        Qwt.QwtPlot.yLeft,
+                                        Qwt.QwtPicker.DragSelection,
+                                        Qwt.QwtPicker.AlwaysOff,
+                                        self.canvas())
+        self.zoomer.setRubberBandPen(Qt.QPen(Qt.Qt.black))
+    
     def alignScales(self):
         self.canvas().setFrameStyle(Qt.QFrame.Box | Qt.QFrame.Plain)
         self.canvas().setLineWidth(1)
@@ -72,15 +80,19 @@ class plotter_base(gr.sync_block, Qwt.QwtPlot):
     def do_plot(self, a):
         # set curve data for known curves
         for cd in self.curve_data:
-            if(numpy.isnan(numpy.sum(cd[0]))): 
-                return
-            if(numpy.isnan(numpy.sum(cd[1]))): 
-                return
+            for c in cd:
+                if(numpy.isnan(numpy.sum(c))): 
+                    print "WARNING: gr-pyqt discarding NaN data"
+                    return
         
         nchan = min(len(self.curves),len(self.curve_data))
         map(lambda x: self.curves[x].setData(self.curve_data[x][0], self.curve_data[x][1]), range(0,nchan));
+
+        if len(self.zoomer.zoomStack()) == 1:
+            self.setAxisAutoScale(Qwt.QwtPlot.xBottom)
+            self.setAxisAutoScale(Qwt.QwtPlot.yLeft)
+            self.zoomer.setZoomBase()
         self.replot();
-        self.show();
 
     def work(self, input_items, output_items):
         pass
