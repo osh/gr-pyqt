@@ -34,11 +34,10 @@ class cpower_plot(plotter_base):
         
         self.curve_data = [([],[])];
 
-    def handler(self, msg):
+    def handler(self, pdu):
         # get input
-        meta = pmt.car(msg);
-        samples = pmt.cdr(msg);
-        x = numpy.array(pmt.c32vector_elements(samples), dtype=numpy.complex64)
+        meta = pmt.car(pdu);
+        x = pmt.to_python(pmt.cdr(pdu))
         x = numpy.real(x * x.conjugate()) + 1e-10; # add small const floor to avoid -inf log values
 
         # pass data

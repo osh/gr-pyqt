@@ -38,18 +38,23 @@ class const_plot(plotter_base):
                                       Qt.QBrush(),
                                       #Qt.QPen(Qt.Qt.darkMagenta),
                                       Qt.QPen(Qt.Qt.green),
-                                      Qt.QSize(1, 1)))
+                                      Qt.QSize(2, 2)))
 
         self.curve_data = [([], [])];
+        self.i = 4
 
-    def handler(self, msg):
+    def handler(self, pdu):
         # get input
-        meta = pmt.car(msg);
-        samples = pmt.cdr(msg);
-        x = numpy.array(pmt.c32vector_elements(samples), dtype=numpy.complex64)
-        
+        meta = pmt.car(pdu);
+        x = pmt.to_python(pmt.cdr(pdu))
         # trigger update
         self.curve_data[0] = (numpy.real(x), numpy.imag(x));
-        self.emit(QtCore.SIGNAL("updatePlot(int)"), 0)
+
+        #self.do_plot()
+#        print dir(self)
+#        print self.curve_data[0]
+#        self.i = self.i + 1
+#        self.curve_data[0] = (numpy.arange(0,self.i), numpy.arange(0,self.i))
+        self.emit(QtCore.SIGNAL("updatePlot(int)"), 1)
 
 

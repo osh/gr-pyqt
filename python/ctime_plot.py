@@ -43,8 +43,7 @@ class ctime_plot(plotter_base):
     def handler(self, msg):
         # get input
         meta = pmt.car(msg);
-        samples = pmt.cdr(msg);
-        x = numpy.array(pmt.c32vector_elements(samples), dtype=numpy.complex64)
+        x = pmt.to_python(pmt.cdr(msg))
         
         # pass data
         self.curve_data[0] = (numpy.linspace(1,len(x),len(x)), numpy.imag(x));

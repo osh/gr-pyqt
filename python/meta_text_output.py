@@ -39,7 +39,7 @@ class meta_text_output(gr.sync_block, QtGui.QTextEdit):
     def handle_input(self, msg):
         meta = pmt.car(msg);
         meta_dict = pmt.to_python(meta);
-        self.s = pprint.pformat(meta_dict);
+        self.s = str(pprint.pformat(meta_dict))
         self.emit(QtCore.SIGNAL("updateText(int)"), 0)
 
     def updateText(self, a):

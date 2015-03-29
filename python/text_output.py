@@ -42,7 +42,7 @@ class text_output(gr.sync_block, QtGui.QTextEdit):
     def handle_input(self, msg):
         vec = pmt.cdr(msg);
         nvec = pmt.to_python(vec);
-        self.s = nvec.tostring();
+        self.s = str(nvec.tostring());
         self.emit(QtCore.SIGNAL("updateText(int)"), 0)
 
     def updateText(self, a):

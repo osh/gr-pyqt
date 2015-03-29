@@ -38,18 +38,7 @@ class time_plot(plotter_base):
         # get input
         meta = pmt.car(msg);
         samples = pmt.cdr(msg);
-
-        x = None
-        if pmt.is_f32vector(samples):
-            x = numpy.array(pmt.f32vector_elements(samples), dtype=numpy.float32)
-        else:
-            if pmt.is_s16vector(samples):
-                x = numpy.array(pmt.s16vector_elements(samples), dtype=numpy.float32)
-            else:
-                if pmt.is_u8vector(samples):
-                    x = numpy.array(pmt.u8vector_elements(samples), dtype=numpy.float32)
-                else:
-                    print "unsupported pdu type in to pyqt.time_plot, please add the correct converted function"
+        x = pmt.to_python(pmt.cdr(msg))
             
         # pass data
         dom = numpy.array(numpy.linspace(1,len(x),len(x)), dtype=numpy.float32);
