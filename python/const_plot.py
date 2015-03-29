@@ -47,14 +47,9 @@ class const_plot(plotter_base):
         # get input
         meta = pmt.car(pdu);
         x = pmt.to_python(pmt.cdr(pdu))
+
         # trigger update
         self.curve_data[0] = (numpy.real(x), numpy.imag(x));
-
-        #self.do_plot()
-#        print dir(self)
-#        print self.curve_data[0]
-#        self.i = self.i + 1
-#        self.curve_data[0] = (numpy.arange(0,self.i), numpy.arange(0,self.i))
         self.emit(QtCore.SIGNAL("updatePlot(int)"), 1)
 
 
