@@ -36,6 +36,10 @@ class plotter_base(gr.sync_block, Qwt.QwtPlot):
         gr.sync_block.__init__(self,blkname,[],[])
         Qwt.QwtPlot.__init__(self, *args)
 
+
+        self.setMinimumWidth(100)
+        self.setMinimumHeight(100)
+
         # set up label if desired
         if not label == "":
             self.setTitle(label)
