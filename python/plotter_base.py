@@ -42,7 +42,15 @@ class plotter_base(gr.sync_block, Qwt.QwtPlot):
 
         # set up label if desired
         if not label == "":
-            self.setTitle(label)
+            ttl = Qwt.QwtText(label)
+            ttl.setFont(Qt.QFont("Helvetica",10))
+            print dir(ttl)
+            self.setTitle(ttl)
+
+        # wedge everything as close as possible
+        self.plotLayout().setMargin(0)
+        self.plotLayout().setCanvasMargin(0)
+        self.plotLayout().setSpacing(0)
 
         # set up background etc
         self.setCanvasBackground(Qt.Qt.black)
