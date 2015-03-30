@@ -44,7 +44,6 @@ class plotter_base(gr.sync_block, Qwt.QwtPlot):
         if not label == "":
             ttl = Qwt.QwtText(label)
             ttl.setFont(Qt.QFont("Helvetica",10))
-            print dir(ttl)
             self.setTitle(ttl)
 
         # wedge everything as close as possible
