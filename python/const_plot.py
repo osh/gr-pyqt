@@ -33,12 +33,7 @@ class const_plot(plotter_base):
 
         noline = True
         if(noline):
-            curve.setStyle(Qwt.QwtPlotCurve.NoCurve);
-            curve.setSymbol(Qwt.QwtSymbol(Qwt.QwtSymbol.XCross,
-                                      Qt.QBrush(),
-                                      #Qt.QPen(Qt.Qt.darkMagenta),
-                                      Qt.QPen(Qt.Qt.green),
-                                      Qt.QSize(2, 2)))
+            self.line_off();
 
         self.curve_data = [([], [])];
         self.i = 4

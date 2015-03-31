@@ -71,7 +71,14 @@ class plotter_base(gr.sync_block, Qwt.QwtPlot):
                                         Qwt.QwtPicker.AlwaysOff,
                                         self.canvas())
         self.zoomer.setRubberBandPen(Qt.QPen(Qt.Qt.black))
-    
+ 
+    def line_off(self, size=2):
+        self.curves[0].setStyle(Qwt.QwtPlotCurve.NoCurve);
+        self.curves[0].setSymbol(Qwt.QwtSymbol(Qwt.QwtSymbol.XCross,
+                                  Qt.QBrush(),
+                                  Qt.QPen(Qt.Qt.green),
+                                  Qt.QSize(size, size)))
+
     def alignScales(self):
         self.canvas().setFrameStyle(Qt.QFrame.Box | Qt.QFrame.Plain)
         self.canvas().setLineWidth(1)

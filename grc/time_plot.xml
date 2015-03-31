@@ -8,6 +8,9 @@
 pyqt.time_plot($l)
 self._$(id)_win = self.$(id);
 $(gui_hint()($win))
+#if $style() == "dots"
+self.$(id).line_off()
+#end if
 </make>
 
   <param>
@@ -17,6 +20,21 @@ $(gui_hint()($win))
     <type>gui_hint</type>
     <hide>part</hide>
   </param>
+    
+  <param>
+    <name>Plot Style</name>
+    <key>style</key>
+    <value>line</value>
+    <type>enum</type>
+      <option>
+        <name>Line</name>
+        <key>line</key>
+      </option>
+      <option>
+        <name>Dots</name>
+        <key>dots</key>
+      </option>
+    </param>
 
   <param>
     <name>Label</name>
