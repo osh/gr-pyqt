@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<block>
+  <name>Message Trim Tail Power</name>
+  <key>pyqt_trim_tail</key>
+  <category>pyqt</category>
+  <import>import pyqt</import>
+  <make>pyqt.trim_tail($n)</make>
+
+  <param>
+    <name>Max Power Abs</name>
+    <key>n</key>
+    <value>10</value>
+    <type>float</type>
+  </param>
+
+  <sink>
+    <name>pdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <source>
+    <name>pdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

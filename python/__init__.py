@@ -62,6 +62,7 @@ from text_output import *;
 from meta_text_output import *;
 from skip_head import *
 from head import *
+from trim_tail import *
 
 # ----------------------------------------------------------------
 # Tail of workaround

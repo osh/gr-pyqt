@@ -32,5 +32,6 @@ install(FILES
     meta_text_output.xml
     skip_head.xml
     head.xml
+    trim_tail.xml
     DESTINATION share/gnuradio/grc/blocks
 )
