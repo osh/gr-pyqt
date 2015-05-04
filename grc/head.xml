@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<block>
+  <name>Message Head</name>
+  <key>pyqt_head</key>
+  <category>pyqt</category>
+  <import>import pyqt</import>
+  <make>pyqt.head($n)</make>
+
+  <param>
+    <name>N</name>
+    <key>n</key>
+    <value>10</value>
+    <type>int</type>
+  </param>
+
+  <sink>
+    <name>pdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <source>
+    <name>pdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

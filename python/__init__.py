@@ -60,6 +60,8 @@ from pdu_meta_extract import *;
 from text_input import *;
 from text_output import *;
 from meta_text_output import *;
+from skip_head import *
+from head import *
 
 # ----------------------------------------------------------------
 # Tail of workaround

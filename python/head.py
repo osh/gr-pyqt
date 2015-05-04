@@ -1,4 +1,6 @@
-# Copyright 2011 Free Software Foundation, Inc.
+#!/usr/bin/env python
+#
+# Copyright 2014 Tim O'Shea
 #
 # This file is part of GNU Radio
 #
@@ -16,21 +18,28 @@
 # along with GNU Radio; see the file COPYING.  If not, write to
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
+#
+import numpy
+from gnuradio import gr;
+import pmt
 
-install(FILES
-    time_plot.xml
-    time_hist.xml
-    value_plot.xml
-    value_hist.xml
-    const_plot.xml
-    ctime_plot.xml
-    cpsd_plot.xml
-    cpower_plot.xml
-    pdu_meta_extract.xml
-    text_input.xml
-    text_output.xml
-    meta_text_output.xml
-    skip_head.xml
-    head.xml
-    DESTINATION share/gnuradio/grc/blocks
-)
+class head(gr.sync_block):
+    def __init__(self, nitems):
+        self.nitems = nitems
+        gr.sync_block.__init__(self,"message_head",[],[])
+        self.message_port_register_in(pmt.intern("pdus"))
+        self.message_port_register_out(pmt.intern("pdus"))
+        self.set_msg_handler(pmt.intern("pdus"), self.handler)   
+
+    def handler(self, pdu):
+        meta = pmt.car(pdu)
+        vec = pmt.to_python(pmt.cdr(pdu))
+        vec = vec[0:self.nitems]
+        self.message_port_pub(pmt.intern("pdus"), pmt.cons( meta, pmt.to_pmt(vec) ) );
+
+    def work(self, input_items, output_items):
+        pass
+
+
+
+

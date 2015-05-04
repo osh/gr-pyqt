@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<block>
+  <name>Message Skip Head</name>
+  <key>pyqt_skip_head</key>
+  <category>pyqt</category>
+  <import>import pyqt</import>
+  <make>pyqt.skip_head($n)</make>
+
+  <param>
+    <name>N</name>
+    <key>n</key>
+    <value>10</value>
+    <type>int</type>
+  </param>
+
+  <sink>
+    <name>pdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <source>
+    <name>pdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

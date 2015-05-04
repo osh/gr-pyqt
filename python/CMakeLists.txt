@@ -44,6 +44,8 @@ GR_PYTHON_INSTALL(
     text_input.py
     text_output.py
     meta_text_output.py
+    head.py
+    skip_head.py
     DESTINATION ${GR_PYTHON_DIR}/pyqt
 )
 
