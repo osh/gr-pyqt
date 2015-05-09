@@ -50,6 +50,7 @@ if _RTLD_GLOBAL != 0:
 from plotter_base import *;
 from const_plot import *;
 from ctime_plot import *;
+from raster_plot import *;
 from cpsd_plot import *;
 from time_plot import *;
 from time_hist import *;

@@ -33,6 +33,7 @@ GR_PYTHON_INSTALL(
     __init__.py
     const_plot.py
     ctime_plot.py
+    raster_plot.py
     value_plot.py
     value_hist.py
     cpsd_plot.py

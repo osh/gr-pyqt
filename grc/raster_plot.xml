@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<block>
+  <name>PyQT Raster Plot</name>
+  <key>pyqt_raster_plot</key>
+  <category>pyqt</category>
+  <import>import pyqt</import>
+  <make>#set $win = 'self._%s_win'%$id
+pyqt.raster_plot($l)
+self._$(id)_win = self.$(id);
+$(gui_hint()($win))
+</make>
+
+  <param>
+    <name>GUI Hint</name>
+    <key>gui_hint</key>
+    <value></value>
+    <type>gui_hint</type>
+    <hide>part</hide>
+  </param>
+    
+  <param>
+    <name>Label</name>
+    <key>l</key>
+    <value></value>
+    <type>string</type>
+  </param>
+
+  <sink>
+    <name>pdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+</block>
