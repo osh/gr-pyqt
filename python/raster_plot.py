@@ -122,8 +122,6 @@ class PlotImage(Qwt.QwtPlotItem):
 
         # frow our width if needed
         if( x.shape[0] > self.X.shape[1]):
-            print self.X.shape          
-            print x.shape          
             self.X.resize( (self.X.shape[0], x.shape[0]), refcheck = False )
  
         # shift existing rows up, add new row
