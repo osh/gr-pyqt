@@ -73,11 +73,15 @@ class PlotImage(Qwt.QwtPlotItem):
         self.plot().setAxisScale(Qwt.QwtPlot.yLeft, *yRange)
 
         self.image = Qwt.toQImage(bytescale(self.xyzs)).mirrored(False, True)
+        self.genColor();
+
+    def genColor(self):   
+        points = [(255,0,0), (255,255,0), (0,255,0), (0,255,255), (0,0,255)]
         for i in range(0, 256):
-            #self.image.setColor(i, (i, 0, 255-i))
-            self.image.setColor(i, QtGui.qRgb(i, 0, 255-i))
-            #self.image.setColor(i, QtGui.qRgb(i, 0, 255-i))
-            #self.image.setColor(i, qRgb(i, 0, 255-i))
+            p0 = int(numpy.floor((i/256.0)/len(points)))
+            p1 = int(numpy.ceil((i/256.0)/len(points)))
+            rgb = map(lambda x: x[0]*max(0,(i-p0)) + x[1]*max(0,(i-p1)), zip(points[p0], points[p1]))
+            self.image.setColor(i, QtGui.qRgb(rgb[0], rgb[1], rgb[2]))
 
     # setData()    
 
@@ -182,13 +186,6 @@ class raster_plot(gr.sync_block, Qwt.QwtPlot):
                                         self.canvas())
         self.zoomer.setRubberBandPen(Qt.QPen(Qt.Qt.black))
  
-    def line_off(self, size=2):
-        self.curves[0].setStyle(Qwt.QwtPlotCurve.NoCurve);
-        self.curves[0].setSymbol(Qwt.QwtSymbol(Qwt.QwtSymbol.XCross,
-                                  Qt.QBrush(),
-                                  Qt.QPen(Qt.Qt.green),
-                                  Qt.QSize(size, size)))
-
     def alignScales(self):
         self.canvas().setFrameStyle(Qt.QFrame.Box | Qt.QFrame.Plain)
         self.canvas().setLineWidth(1)
@@ -202,7 +199,6 @@ class raster_plot(gr.sync_block, Qwt.QwtPlot):
                     Qwt.QwtAbstractScaleDraw.Backbone, False)
 
     def do_plot(self, a):
-        # set curve data for known curves
         if len(self.zoomer.zoomStack()) == 1:
             self.setAxisAutoScale(Qwt.QwtPlot.xBottom)
             self.setAxisAutoScale(Qwt.QwtPlot.yLeft)
