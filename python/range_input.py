@@ -67,7 +67,7 @@ class range_input(gr.sync_block, QtGui.QGroupBox):
         return True
 
     def box_changed(self):
-        startval = int(self.leStart.text().toUtf8())
+        startval = int(eval(str(self.leStart.text().toUtf8())))
         self.scroll.setValue(startval)
         self.values_changed()
 
@@ -78,7 +78,7 @@ class range_input(gr.sync_block, QtGui.QGroupBox):
 
 
     def values_changed(self):
-        (s,l) = map(lambda x: pmt.from_long(int(x.text().toUtf8())),[self.leStart,self.leLen])
+        (s,l) = map(lambda x: pmt.from_long(int(eval(str(x.text().toUtf8())))),[self.leStart,self.leLen])
         self.message_port_pub(pmt.intern("range"), pmt.cons(s,l))
 
     def work(self, input_items, output_items):
