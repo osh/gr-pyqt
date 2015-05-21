@@ -252,7 +252,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>Such Samples, Wow!</value>
+      <value>"Such Samples, %s Wow!"%(filename)</value>
     </param>
     <param>
       <key>author</key>

@@ -1,9 +1,9 @@
 #!/usr/bin/env python2
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Such Samples, Wow!
+# Title: Such Samples, /tmp/data.dat Wow!
 # Author: Tim O'Shea
-# Generated: Thu May 21 11:13:27 2015
+# Generated: Thu May 21 15:31:14 2015
 ##################################################
 
 if __name__ == '__main__':
@@ -29,9 +29,9 @@ from distutils.version import StrictVersion
 class such_samples(gr.top_block, Qt.QWidget):
 
     def __init__(self, filename="/tmp/data.dat"):
-        gr.top_block.__init__(self, "Such Samples, Wow!")
+        gr.top_block.__init__(self, "Such Samples, /tmp/data.dat Wow!")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("Such Samples, Wow!")
+        self.setWindowTitle("Such Samples, /tmp/data.dat Wow!")
         try:
              self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
         except:
