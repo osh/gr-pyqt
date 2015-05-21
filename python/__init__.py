@@ -59,11 +59,13 @@ from value_hist import *;
 from cpower_plot import *;
 from pdu_meta_extract import *;
 from text_input import *;
+from range_input import *;
 from text_output import *;
 from meta_text_output import *;
 from skip_head import *
 from head import *
 from trim_tail import *
+from file_message_source import *
 
 # ----------------------------------------------------------------
 # Tail of workaround

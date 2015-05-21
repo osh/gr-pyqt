@@ -214,7 +214,7 @@ class raster_plot(gr.sync_block, Qwt.QwtPlot):
         # get input msg
         meta = pmt.car(msg);
         samples = pmt.cdr(msg);
-        x = pmt.to_python(pmt.cdr(msg))
+        x = pmt.to_python(pmt.cdr(msg))*1.0
 
         # add to raster
         self.__data.add_row(x)

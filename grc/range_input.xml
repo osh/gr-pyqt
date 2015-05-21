@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<block>
+  <name>PyQT Range Input</name>
+  <key>pyqt_range_input</key>
+  <category>pyqt</category>
+  <import>import pyqt</import>
+  <make>#set $win = 'self._%s_win'%$id
+pyqt.range_input()
+self._$(id)_win = self.$(id);
+$(gui_hint()($win))
+</make>
+
+  <param>
+    <name>GUI Hint</name>
+    <key>gui_hint</key>
+    <value></value>
+    <type>gui_hint</type>
+    <hide>part</hide>
+  </param>
+
+  <sink>
+    <name>file_range</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+  <source>
+    <name>range</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

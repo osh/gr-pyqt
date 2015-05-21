@@ -43,11 +43,13 @@ GR_PYTHON_INSTALL(
     plotter_base.py
     pdu_meta_extract.py
     text_input.py
+    range_input.py
     text_output.py
     meta_text_output.py
     head.py
     skip_head.py
     trim_tail.py
+    file_message_source.py
     DESTINATION ${GR_PYTHON_DIR}/pyqt
 )
 

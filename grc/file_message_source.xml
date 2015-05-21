@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<block>
+  <name>PyQT File Message Source</name>
+  <key>pyqt_file_message_souce</key>
+  <category>pyqt</category>
+  <import>import pyqt</import>
+  <make>pyqt.file_message_source($filename)</make>
+
+  <param>
+    <name>Filename</name>
+    <key>filename</key>
+    <value>/tmp/data.dat</value>
+    <type>string</type>
+  </param>
+
+  <sink>
+    <name>range</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+  <source>
+    <name>file_range</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  <source>
+    <name>pdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

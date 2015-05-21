@@ -29,10 +29,12 @@ install(FILES
     cpower_plot.xml
     pdu_meta_extract.xml
     text_input.xml
+    range_input.xml
     text_output.xml
     meta_text_output.xml
     skip_head.xml
     head.xml
     trim_tail.xml
+    file_message_source.xml
     DESTINATION share/gnuradio/grc/blocks
 )
