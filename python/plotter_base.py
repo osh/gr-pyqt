@@ -90,7 +90,7 @@ class plotter_base(gr.sync_block, Qwt.QwtPlot):
         # set up some other stuff ...
         self.grid = None
         self.toggle_axes()
-        self.toggle_grid()
+#        self.toggle_grid()
         self.markers = []
 
     # pop up a context menu
