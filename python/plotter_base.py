@@ -24,7 +24,7 @@ from gnuradio import gr;
 from scipy import signal
 import pylab
 
-from PyQt4 import Qt, QtCore
+from PyQt4 import Qt, QtCore, QtGui
 import PyQt4.Qwt5 as Qwt
 from PyQt4.Qwt5.anynumpy import *
 import pmt
@@ -63,6 +63,9 @@ class plotter_base(gr.sync_block, Qwt.QwtPlot):
         QtCore.QObject.connect(self,
                        QtCore.SIGNAL("updatePlot(int)"),
                        self.do_plot)
+        QtCore.QObject.connect(self,
+                       QtCore.SIGNAL("updatePlot(int)"),
+                       self.do_plot)
 
         # set up zoomer
         self.zoomer = Qwt.QwtPlotZoomer(Qwt.QwtPlot.xBottom,
@@ -71,7 +74,62 @@ class plotter_base(gr.sync_block, Qwt.QwtPlot):
                                         Qwt.QwtPicker.AlwaysOff,
                                         self.canvas())
         self.zoomer.setRubberBandPen(Qt.QPen(Qt.Qt.black))
+
+
+        # Set up menu actions
+        actions = [("Toggle Grid", self.toggle_grid),
+                   ("Toggle Axes", self.toggle_axes),
+                   ("Clear Markers", self.clear_markers)
+                  ]
+        self.actions = [];
+        for a in actions:
+            action = QtGui.QAction(a[0], self)
+            action.triggered.connect(a[1])
+            self.actions.append(action)
+
+        # set up some other stuff ...
+        self.grid = None
+        self.toggle_axes()
+        self.toggle_grid()
+        self.markers = []
+
+    # pop up a context menu
+    def triggerMenu(self, pos):
+        menu = QtGui.QMenu(self)
+        for a in self.actions:
+            menu.addAction(a)
+        menu.exec_(pos)
+        
  
+    # override default mousePressEvent
+    def mousePressEvent(self, ev):
+
+        # context menu on middle click
+        if(ev.buttons() == Qt.Qt.MiddleButton):
+            self.triggerMenu(ev.globalPos())
+    
+        # add a marker on shift left click
+        if((ev.buttons() == Qt.Qt.LeftButton) and (ev.modifiers() == Qt.Qt.ShiftModifier)):
+
+            m = Qwt.QwtPlotMarker()
+            (x,y) = (self.invTransform(Qwt.QwtPlot.xBottom, ev.x()),
+               self.invTransform(Qwt.QwtPlot.yLeft, ev.y()))
+            m.setValue(x,y)
+
+            lbl = Qwt.QwtText("test")
+            lbl.setText(
+            'x = %+.6g, y = %.6g'
+            % (self.invTransform(Qwt.QwtPlot.xBottom, ev.x()),
+               self.invTransform(Qwt.QwtPlot.yLeft, ev.y())))
+            lbl.setColor(Qt.Qt.cyan)
+
+            m.setLabel(lbl)
+            m.attach(self)
+            self.markers.append(m)
+            self.trigger_update()
+
+
+    # turn curve[0] line off (dots only)
     def line_off(self, size=2):
         self.curves[0].setStyle(Qwt.QwtPlotCurve.NoCurve);
         self.curves[0].setSymbol(Qwt.QwtSymbol(Qwt.QwtSymbol.XCross,
@@ -79,6 +137,36 @@ class plotter_base(gr.sync_block, Qwt.QwtPlot):
                                   Qt.QPen(Qt.Qt.green),
                                   Qt.QSize(size, size)))
 
+    # toggle grid status
+    def toggle_grid(self):
+        print "toggle grid"
+        if self.grid == None:
+            self.grid = Qwt.QwtPlotGrid()
+            self.grid.enableXMin(True)
+            self.grid.setMajPen(Qt.QPen(Qt.Qt.gray, 0, Qt.Qt.DotLine))
+            self.grid.setMinPen(Qt.QPen(Qt.Qt.darkGray, 0 , Qt.Qt.DotLine))
+            self.grid.attach(self)
+        else:
+            self.grid.detach()
+            self.grid = None
+        self.trigger_update()
+ 
+    # remove all markers
+    def clear_markers(self):
+        for m in self.markers:
+            m.detach()
+        self.markers = []
+        self.trigger_update()
+
+    def trigger_update(self):
+        self.emit(QtCore.SIGNAL("updatePlot(int)"), 0)   
+
+    # toggle axes status
+    def toggle_axes(self):
+        ax_en = not self.axisEnabled(Qwt.QwtPlot.yLeft)
+        self.enableAxis(Qwt.QwtPlot.yLeft,ax_en)
+        self.enableAxis(Qwt.QwtPlot.xBottom,ax_en)
+    
     def alignScales(self):
         self.canvas().setFrameStyle(Qt.QFrame.Box | Qt.QFrame.Plain)
         self.canvas().setLineWidth(1)
