@@ -31,6 +31,7 @@ endif()
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
+    pdu_lambda.py
     const_plot.py
     ctime_plot.py
     raster_plot.py

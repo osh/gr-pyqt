@@ -47,6 +47,7 @@ if _RTLD_GLOBAL != 0:
 # import any pure python here
 #
 
+from pdu_lambda import *;
 from plotter_base import *;
 from const_plot import *;
 from ctime_plot import *;

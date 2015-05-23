@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<block>
+  <name>PDU Message Lambda Block</name>
+  <key>pyqt_pdu_lambda</key>
+  <category>pyqt</category>
+  <import>import pyqt</import>
+  <make>pyqt.pdu_lambda($fn)</make>
+
+  <param>
+    <name>function</name>
+    <key>fn</key>
+    <value>lambda x: x*10</value>
+    <type>raw</type>
+  </param>
+
+  <sink>
+    <name>pdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <source>
+    <name>pdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>
