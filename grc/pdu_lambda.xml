@@ -6,6 +6,8 @@
   <import>import pyqt</import>
   <make>pyqt.pdu_lambda($fn)</make>
 
+  <callback>set_fn($fn)</callback>
+
   <param>
     <name>function</name>
     <key>fn</key>

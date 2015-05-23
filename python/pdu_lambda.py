@@ -25,8 +25,8 @@ import pmt
 
 class pdu_lambda(gr.sync_block):
     def __init__(self, fn):
-        self.fn = fn
         gr.sync_block.__init__(self,"pdu_lambda",[],[])
+        self.set_fn(fn)
         self.message_port_register_in(pmt.intern("pdus"))
         self.message_port_register_out(pmt.intern("pdus"))
         self.set_msg_handler(pmt.intern("pdus"), self.handler)   
@@ -37,6 +37,9 @@ class pdu_lambda(gr.sync_block):
         vec = self.fn(vec)
         self.message_port_pub(pmt.intern("pdus"), 
             pmt.cons( meta, pmt.to_pmt(vec) ) );
+
+    def set_fn(self,fn):
+        self.fn = fn
 
     def work(self, input_items, output_items):
         pass
