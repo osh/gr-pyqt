@@ -32,6 +32,7 @@ GR_PYTHON_INSTALL(
     FILES
     __init__.py
     pdu_lambda.py
+    stream_lambda.py
     const_plot.py
     ctime_plot.py
     raster_plot.py
@@ -44,6 +45,7 @@ GR_PYTHON_INSTALL(
     plotter_base.py
     pdu_meta_extract.py
     text_input.py
+    variable_text_input.py
     range_input.py
     text_output.py
     meta_text_output.py

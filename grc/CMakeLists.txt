@@ -19,6 +19,7 @@
 
 install(FILES
     pdu_lambda.xml
+    stream_lambda.xml
     time_plot.xml
     raster_plot.xml
     time_hist.xml
@@ -30,6 +31,7 @@ install(FILES
     cpower_plot.xml
     pdu_meta_extract.xml
     text_input.xml
+    variable_text_input.xml
     range_input.xml
     text_output.xml
     meta_text_output.xml

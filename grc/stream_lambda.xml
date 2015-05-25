@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<block>
+  <name>Stream Lambda Block</name>
+  <key>pyqt_stream_lambda</key>
+  <category>pyqt</category>
+  <import>import pyqt</import>
+  <import>import numpy</import>
+  <make>pyqt.stream_lambda($fn,$n_streams_in*[$type_in.np],$n_streams_out*[$type_out.np])</make>
+
+  <callback>set_fn($fn)</callback>
+
+  <param>
+    <name>function</name>
+    <key>fn</key>
+    <value>lambda input_items, output_index: (input_items[output_index][::2]**2)*0.1</value>
+    <type>raw</type>
+  </param>
+  
+  <param>
+    <name>Num Input Streams</name>
+    <key>n_streams_in</key>
+    <value>1</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Num Output Streams</name>
+    <key>n_streams_out</key>
+    <value>1</value>
+    <type>int</type>
+  </param>
+
+  <param>
+      <name>Input Data Type</name>
+      <key>type_in</key>
+      <type>enum</type>
+      <option>
+          <name>Complex</name>
+          <key>complex</key>
+          <opt>np:numpy.complex64</opt>
+      </option>
+      <option>
+          <name>Float</name>
+          <key>float</key>
+          <opt>np:numpy.float32</opt>
+      </option>
+      <option>
+          <name>Int</name>
+          <key>int</key>
+          <opt>np:numpy.int32</opt>
+      </option>
+      <option>
+          <name>Short</name>
+          <key>short</key>
+          <opt>np:numpy.int16</opt>
+      </option>
+      <option>
+          <name>Byte</name>
+          <key>byte</key>
+          <opt>np:numpy.char</opt>
+      </option>
+  </param>
+
+  <param>
+      <name>Output Data Type</name>
+      <key>type_out</key>
+      <type>enum</type>
+      <option>
+          <name>Complex</name>
+          <key>complex</key>
+          <opt>np:numpy.complex64</opt>
+      </option>
+      <option>
+          <name>Float</name>
+          <key>float</key>
+          <opt>np:numpy.float32</opt>
+      </option>
+      <option>
+          <name>Int</name>
+          <key>int</key>
+          <opt>np:numpy.int32</opt>
+      </option>
+      <option>
+          <name>Short</name>
+          <key>short</key>
+          <opt>np:numpy.int16</opt>
+      </option>
+      <option>
+          <name>Byte</name>
+          <key>byte</key>
+          <opt>np:numpy.char</opt>
+      </option>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>$type_in</type>
+    <nports>$n_streams_in</nports>
+  </sink>
+
+  <source>
+    <name>pdus</name>
+    <type>$type_out</type>
+    <nports>$n_streams_out</nports>
+  </source>
+</block>

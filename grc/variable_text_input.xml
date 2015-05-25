@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<block>
+  <name>PyQT Text Input Variable</name>
+  <key>variable_pyqt_text_input</key>
+  <category>pyqt</category>
+  <import>import pyqt</import>
+  <var_make>self.$(id) = $(id) = $value</var_make>
+  <make>#set $win = 'self._%s_win'%$id
+$(win) = pyqt.variable_text_input(self.set_$(id),"$(id)","$(value)","")
+$(gui_hint()($win))</make>
+  <callback>self.set_$(id)($value)</callback>
+
+  <param>
+    <name>Default Value</name>
+    <key>value</key>
+    <value>lambda x: 10*x</value>
+    <type>raw</type>
+  </param>
+
+  <param>
+    <name>GUI Hint</name>
+    <key>gui_hint</key>
+    <value></value>
+    <type>gui_hint</type>
+    <hide>part</hide>
+  </param>
+</block>
