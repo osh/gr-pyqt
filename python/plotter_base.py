@@ -36,7 +36,7 @@ class plotter_base(gr.sync_block, Qwt.QwtPlot):
         gr.sync_block.__init__(self,blkname,[],[])
         Qwt.QwtPlot.__init__(self, *args)
 
-
+        self.enabled = True
         self.setMinimumWidth(100)
         self.setMinimumHeight(100)
 
@@ -77,7 +77,8 @@ class plotter_base(gr.sync_block, Qwt.QwtPlot):
 
 
         # Set up menu actions
-        actions = [("Toggle Grid", self.toggle_grid),
+        actions = [("Start/Stop", self.toggle_enabled),
+                   ("Toggle Grid", self.toggle_grid),
                    ("Toggle Axes", self.toggle_axes),
                    ("Clear Markers", self.clear_markers)
                   ]
@@ -128,6 +129,8 @@ class plotter_base(gr.sync_block, Qwt.QwtPlot):
             self.markers.append(m)
             self.trigger_update()
 
+    def toggle_enabled(self):
+        self.enabled = not self.enabled
 
     # turn curve[0] line off (dots only)
     def line_off(self, size=2):
@@ -180,6 +183,8 @@ class plotter_base(gr.sync_block, Qwt.QwtPlot):
                     Qwt.QwtAbstractScaleDraw.Backbone, False)
 
     def do_plot(self, a):
+        if not self.enabled:    
+            return
         # set curve data for known curves
         for cd in self.curve_data:
             for c in cd:

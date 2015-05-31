@@ -56,9 +56,8 @@ class PlotImage(Qwt.QwtPlotItem):
         self.xyzs = None
     
         self.X = numpy.zeros([minrow, mincol])
-#        self.setData(self.X)
-    # __init__()
-    
+
+
     def setData(self, xyzs, xRange = None, yRange = None):
         self.xyzs = xyzs
         shape = xyzs.shape
@@ -140,6 +139,7 @@ class raster_plot(gr.sync_block, Qwt.QwtPlot):
     def __init__(self, blkname="pyqt_raster", label="", *args):
         gr.sync_block.__init__(self,blkname,[],[])
         Qwt.QwtPlot.__init__(self, *args)
+        self.enabled = True
 
         # set up message port
         self.message_port_register_in(pmt.intern("pdus"))
@@ -185,6 +185,31 @@ class raster_plot(gr.sync_block, Qwt.QwtPlot):
                                         Qwt.QwtPicker.AlwaysOff,
                                         self.canvas())
         self.zoomer.setRubberBandPen(Qt.QPen(Qt.Qt.black))
+
+        # Set up menu actions
+        actions = [("Start/Stop", self.toggle_enabled),
+                  ]
+        self.actions = [];
+        for a in actions:
+            action = QtGui.QAction(a[0], self)
+            action.triggered.connect(a[1])
+            self.actions.append(action)
+
+    # pop up a context menu
+    def triggerMenu(self, pos):
+        menu = QtGui.QMenu(self)
+        for a in self.actions:
+            menu.addAction(a)
+        menu.exec_(pos)
+
+    # override default mousePressEvent
+    def mousePressEvent(self, ev):
+        # context menu on middle click
+        if(ev.buttons() == Qt.Qt.MiddleButton):
+            self.triggerMenu(ev.globalPos())
+
+    def toggle_enabled(self):
+        self.enabled = not self.enabled
  
     def alignScales(self):
         self.canvas().setFrameStyle(Qt.QFrame.Box | Qt.QFrame.Plain)
@@ -209,20 +234,21 @@ class raster_plot(gr.sync_block, Qwt.QwtPlot):
         pass
 
     def handler(self, msg):
-        self._lock.acquire();
-
-        # get input msg
-        meta = pmt.car(msg);
-        samples = pmt.cdr(msg);
-        x = pmt.to_python(pmt.cdr(msg))*1.0
-
-        # add to raster
-        self.__data.add_row(x)
-
-        # update plot
-        self.emit(QtCore.SIGNAL("updatePlot(int)"), 0)
-        
-        self._lock.release();
+        if(self.enabled):
+            self._lock.acquire();
+    
+            # get input msg
+            meta = pmt.car(msg);
+            samples = pmt.cdr(msg);
+            x = pmt.to_python(pmt.cdr(msg))*1.0
+    
+            # add to raster
+            self.__data.add_row(x)
+    
+            # update plot
+            self.emit(QtCore.SIGNAL("updatePlot(int)"), 0)
+            
+            self._lock.release();
 
 class raster_test_top_block(gr.top_block, Qt.QWidget):
 
