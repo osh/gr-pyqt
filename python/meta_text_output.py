@@ -21,7 +21,6 @@
 #
 import numpy,pylab,pmt,pprint
 from gnuradio import gr;
-from scipy import signal
 from PyQt4 import Qt, QtCore, QtGui
 
 class meta_text_output(gr.sync_block, QtGui.QTextEdit):

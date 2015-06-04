@@ -21,7 +21,6 @@
 #
 import numpy
 from gnuradio import gr;
-from scipy import signal
 import pylab,numpy,os
 import pmt,pprint
 

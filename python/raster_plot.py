@@ -21,7 +21,6 @@
 #
 import numpy
 from gnuradio import gr;
-from scipy import signal
 import pylab
 
 from PyQt4 import Qt, QtCore, QtGui
@@ -29,7 +28,6 @@ import PyQt4.Qwt5 as Qwt
 from PyQt4.Qwt5.anynumpy import *
 import pmt,threading
 
-# from scipy.pilutil
 def bytescale(data, cmin=None, cmax=None, high=255, low=0):
     if ((hasattr(data, 'dtype') and data.dtype.char == UInt8)
         or (hasattr(data, 'typecode') and data.typecode == UInt8)
