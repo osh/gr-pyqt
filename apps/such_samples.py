@@ -3,7 +3,7 @@
 # GNU Radio Python Flow Graph
 # Title: Such Samples, /tmp/data.dat Wow!
 # Author: Tim O'Shea
-# Generated: Thu May 21 15:31:14 2015
+# Generated: Fri Jun  5 11:37:15 2015
 ##################################################
 
 if __name__ == '__main__':
@@ -22,6 +22,7 @@ from gnuradio import gr
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from optparse import OptionParser
+import numpy
 import pyqt
 import sys
 
@@ -63,7 +64,7 @@ class such_samples(gr.top_block, Qt.QWidget):
         self.pyqt_range_input_0 = pyqt.range_input()
         self._pyqt_range_input_0_win = self.pyqt_range_input_0;
         self.top_layout.addWidget(self._pyqt_range_input_0_win)
-        self.pyqt_file_message_souce_0 = pyqt.file_message_source(filename)
+        self.pyqt_file_message_souce_0 = pyqt.file_message_source(filename, "complex64")
         self.pyqt_ctime_plot_0 = pyqt.ctime_plot("Much Time")
         self._pyqt_ctime_plot_0_win = self.pyqt_ctime_plot_0;
         self.top_layout.addWidget(self._pyqt_ctime_plot_0_win)

@@ -4,7 +4,7 @@
   <key>pyqt_file_message_souce</key>
   <category>pyqt</category>
   <import>import pyqt</import>
-  <make>pyqt.file_message_source($filename)</make>
+  <make>pyqt.file_message_source($filename, $filetype)</make>
 
   <param>
     <name>Filename</name>
@@ -12,9 +12,72 @@
     <value>/tmp/data.dat</value>
     <type>string</type>
   </param>
+  <param>
+    <name>File Type</name>
+    <key>filetype</key>
+    <value>"complex64</value>
+    <type>enum</type>
+    <option>
+        <name>Complex64</name>
+        <key>"complex64"</key>
+    </option>
+    <option>
+        <name>Complex128</name>
+        <key>"complex128"</key>
+    </option>
+    <option>
+        <name>Float16</name>
+        <key>"float16"</key>
+    </option>
+    <option>
+        <name>Float32</name>
+        <key>"float32"</key>
+    </option>
+    <option>
+        <name>Float64</name>
+        <key>"float64"</key>
+    </option>
+    <option>
+        <name>Int8</name>
+        <key>"int8"</key>
+    </option>
+    <option>
+        <name>Int16</name>
+        <key>"int16"</key>
+    </option>
+    <option>
+        <name>Int32</name>
+        <key>"int32"</key>
+    </option>
+    <option>
+        <name>Int64</name>
+        <key>"int64"</key>
+    </option>
+    <option>
+        <name>Uint8</name>
+        <key>"uint8"</key>
+    </option>
+    <option>
+        <name>Uint16</name>
+        <key>"uint16"</key>
+    </option>
+    <option>
+        <name>Uint32</name>
+        <key>"uint32"</key>
+    </option>
+    <option>
+        <name>Uint64</name>
+        <key>"uint64"</key>
+    </option>
+  </param>
 
   <sink>
     <name>range</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+  <sink>
+    <name>file_type</name>
     <type>message</type>
     <optional>1</optional>
   </sink>
