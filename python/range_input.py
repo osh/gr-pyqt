@@ -30,7 +30,7 @@ class range_input(gr.sync_block, QtGui.QGroupBox):
     def __init__(self, blkname="text_input", label="", *args):
         gr.sync_block.__init__(self,blkname,[],[])
         QtGui.QGroupBox.__init__(self, *args)
-
+        self.filemax = 0;
         self.message_port_register_in(pmt.intern("file_range"));
         self.message_port_register_out(pmt.intern("range"));
 
@@ -55,9 +55,11 @@ class range_input(gr.sync_block, QtGui.QGroupBox):
     
     def set_file_range(self,msg):
         (s,e) = pmt.to_python(msg)
-        #print "file_range",(s,e)
+        self.filemax = e
+        goode = self.filemax - int(eval(str(self.leLen.text().toUtf8())))
+        self.scroll.setMaximum(goode)
         self.scroll.setMinimum(s)
-        self.scroll.setMaximum(e)
+
 
         # trigger a plot...
         self.values_changed()
@@ -68,6 +70,8 @@ class range_input(gr.sync_block, QtGui.QGroupBox):
     def box_changed(self):
         startval = int(eval(str(self.leStart.text().toUtf8())))
         self.scroll.setValue(startval)
+        goode = self.filemax - int(eval(str(self.leLen.text().toUtf8())))
+        self.scroll.setMaximum(goode)
         self.values_changed()
 
     def slider_changed(self):
