@@ -25,7 +25,9 @@ import pylab
 
 from PyQt4 import Qt, QtCore, QtGui
 import PyQt4.Qwt5 as Qwt
-from PyQt4.Qwt5.anynumpy import *
+#from PyQt4.Qwt5.anynumpy import *
+from numpy import ravel, asarray
+from numpy import uint8 as UInt8
 import pmt,threading
 
 def bytescale(data, cmin=None, cmax=None, high=255, low=0):
