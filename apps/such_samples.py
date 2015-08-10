@@ -1,9 +1,9 @@
 #!/usr/bin/env python2
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Such Samples, /tmp/data.dat Wow!
+# Title: Such Samples, /tmp/data Wow!
 # Author: Tim O'Shea
-# Generated: Fri Jun  5 11:37:15 2015
+# Generated: Mon Aug 10 18:28:56 2015
 ##################################################
 
 if __name__ == '__main__':
@@ -29,10 +29,10 @@ import sys
 from distutils.version import StrictVersion
 class such_samples(gr.top_block, Qt.QWidget):
 
-    def __init__(self, filename="/tmp/data.dat"):
-        gr.top_block.__init__(self, "Such Samples, /tmp/data.dat Wow!")
+    def __init__(self, filename="/tmp/data"):
+        gr.top_block.__init__(self, "Such Samples, /tmp/data Wow!")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("Such Samples, /tmp/data.dat Wow!")
+        self.setWindowTitle("Such Samples, /tmp/data Wow!")
         try:
              self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
         except:
@@ -94,7 +94,7 @@ class such_samples(gr.top_block, Qt.QWidget):
 
 if __name__ == '__main__':
     parser = OptionParser(option_class=eng_option, usage="%prog: [options]")
-    parser.add_option("", "--filename", dest="filename", type="string", default="/tmp/data.dat",
+    parser.add_option("", "--filename", dest="filename", type="string", default="/tmp/data",
         help="Set filename [default=%default]")
     (options, args) = parser.parse_args()
     if(StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0")):

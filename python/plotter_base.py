@@ -25,7 +25,7 @@ import pylab
 
 from PyQt4 import Qt, QtCore, QtGui
 import PyQt4.Qwt5 as Qwt
-from PyQt4.Qwt5.anynumpy import *
+#from PyQt4.Qwt5.anynumpy import *
 import pmt
 
 class plotter_base(gr.sync_block, Qwt.QwtPlot):
