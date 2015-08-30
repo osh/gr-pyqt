@@ -53,7 +53,7 @@ GR_PYTHON_INSTALL(
     skip_head.py
     trim_tail.py
     file_message_source.py
-    DESTINATION ${GR_PYTHON_DIR}/pyqt
+    table.py DESTINATION ${GR_PYTHON_DIR}/pyqt
 )
 
 ########################################################################

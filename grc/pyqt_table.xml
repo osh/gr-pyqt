@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<block>
+  <name>PyQT Table</name>
+  <key>pyqt_table</key>
+  <category>pyqt</category>
+  <import>import pyqt</import>
+  <make>#set $win = 'self._%s_win'%$id
+pyqt.table(row_id=$row_id, columns=$columns)
+self._$(id)_win = self.$(id);
+$(gui_hint()($win))
+</make>
+
+<param>
+  <name>Row Identifier</name>
+  <key>row_id</key>
+  <value>"Id"</value>
+  <type>string</type>
+</param>
+<param>
+  <name>Columns</name>
+  <key>columns</key>
+  <value>["Id", "Col1", "Col2"]</value>
+  <type>raw</type>
+</param>
+ <param>
+   <name>GUI Hint</name>
+   <key>gui_hint</key>
+   <value></value>
+   <type>gui_hint</type>
+   <hide>part</hide>
+ </param>
+
+ <sink>
+   <name>pdus</name>
+   <type>message</type>
+   <optional>1</optional>
+ </sink>
+</block>
