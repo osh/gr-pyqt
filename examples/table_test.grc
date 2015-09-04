@@ -217,10 +217,10 @@
     </param>
   </block>
   <block>
-    <key>tables_pyqt_table</key>
+    <key>pyqt_table</key>
     <param>
       <key>id</key>
-      <value>tables_pyqt_table_0</value>
+      <value>pyqt_table_0</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -316,7 +316,7 @@
   </block>
   <connection>
     <source_block_id>blocks_message_strobe_0</source_block_id>
-    <sink_block_id>tables_pyqt_table_0</sink_block_id>
+    <sink_block_id>pyqt_table_0</sink_block_id>
     <source_key>strobe</source_key>
     <sink_key>pdus</sink_key>
   </connection>
