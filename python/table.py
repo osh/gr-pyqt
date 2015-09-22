@@ -25,6 +25,7 @@ from PyQt4 import Qt, QtCore, QtGui
 import pmt
 
 class table(gr.sync_block, QtGui.QTableWidget):
+    updateTrigger = QtCore.pyqtSignal()
     """
     This is a PyQT-Table. It will be populated by PDU messages.
     For every new message, it would insert a new row, which might not be
@@ -51,6 +52,8 @@ class table(gr.sync_block, QtGui.QTableWidget):
         QtGui.QTableWidget.__init__(self, *args)
         self.message_port_register_in(pmt.intern("pdus"))
         self.set_msg_handler(pmt.intern("pdus"), self.handle_input)
+        self.scroll_to_bottom = True
+        self.updateTrigger.connect(self.updatePosted)
 
         ## table setup
 
@@ -88,6 +91,10 @@ class table(gr.sync_block, QtGui.QTableWidget):
         self.setSortingEnabled(True)
         self.rowcount = 0
 
+    @QtCore.pyqtSlot()
+    def updatePosted(self):
+        self.scrollToBottom()
+
     def handle_input(self, pdu):
         #self.setSortingEnabled(False)
         # we expect a pdu
@@ -100,6 +107,8 @@ class table(gr.sync_block, QtGui.QTableWidget):
             return
 
         meta_dict = pmt.to_python(meta)
+        if(not type(meta_dict) == type({})): 
+            return
         # for now, we insist on having the row_id pmt within the meta field
         if meta_dict.has_key(self.row_id):
             # get the current row identifier
@@ -131,6 +140,8 @@ class table(gr.sync_block, QtGui.QTableWidget):
             if create_new_row:
                 self.rowcount += 1
                 self.setRowCount(self.rowcount)
+                if self.scroll_to_bottom:
+                    self.updateTrigger.emit()
         else:
             print("Meta Field "+self.row_id+" not found.")
 
