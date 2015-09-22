@@ -39,5 +39,6 @@ install(FILES
     head.xml
     trim_tail.xml
     file_message_source.xml
+    dict_ui_source.xml
     pyqt_table.xml DESTINATION share/gnuradio/grc/blocks
 )

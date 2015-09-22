@@ -70,6 +70,7 @@ from head import *
 from trim_tail import *
 from file_message_source import *
 from table import *
+from dict_ui_source import *
 
 # ----------------------------------------------------------------
 # Tail of workaround

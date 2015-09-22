@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<block>
+  <name>PyQT Dict UI Text/Button Input Source</name>
+  <key>pyqt_dict_ui_source</key>
+  <category>pyqt</category>
+  <import>import pyqt</import>
+  <make>#set $win = 'self._%s_win'%$id
+pyqt.dict_ui_source(defaults=$defaults, submit_text=$submit_text)
+self._$(id)_win = self.$(id);
+$(gui_hint()($win))
+</make>
+
+<param>
+  <name>Default Fields</name>
+  <key>defaults</key>
+  <value>{"filename":"test.dat", "count":500}</value>
+  <type>raw</type>
+</param>
+<param>
+  <name>Button Text</name>
+  <key>submit_text</key>
+  <value>Send</value>
+  <type>string</type>
+</param>
+ <param>
+   <name>GUI Hint</name>
+   <key>gui_hint</key>
+   <value></value>
+   <type>gui_hint</type>
+   <hide>part</hide>
+ </param>
+
+ <source>
+   <name>pdus</name>
+   <type>message</type>
+   <optional>1</optional>
+ </source>
+</block>
