@@ -81,6 +81,11 @@
     <type>message</type>
     <optional>1</optional>
   </sink>
+  <sink>
+    <name>file_open</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
   <source>
     <name>file_range</name>
     <type>message</type>

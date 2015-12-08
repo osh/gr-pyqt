@@ -52,7 +52,10 @@ class range_input(gr.sync_block, QtGui.QGroupBox):
         self.leLen.returnPressed.connect(self.box_changed)
         self.scroll.sliderMoved.connect(self.slider_changed)
         self.set_msg_handler(pmt.intern("file_range"), self.set_file_range)
-    
+ 
+        self.box_changed()
+        self.scroll.setFocusPolicy(QtCore.Qt.StrongFocus)
+   
     def set_file_range(self,msg):
         (s,e) = pmt.to_python(msg)
         self.filemax = e
@@ -70,8 +73,12 @@ class range_input(gr.sync_block, QtGui.QGroupBox):
     def box_changed(self):
         startval = int(eval(str(self.leStart.text().toUtf8())))
         self.scroll.setValue(startval)
-        goode = self.filemax - int(eval(str(self.leLen.text().toUtf8())))
+        lenval = int(eval(str(self.leLen.text().toUtf8())))
+        goode = self.filemax - lenval
         self.scroll.setMaximum(goode)
+        print lenval
+        self.scroll.setSingleStep(lenval/2.0)
+        self.scroll.setSingleStep(lenval)
         self.values_changed()
 
     def slider_changed(self):

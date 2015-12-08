@@ -37,9 +37,11 @@ class file_message_source(gr.sync_block):
         self.message_port_register_out(pmt.intern("file_range"));
         self.message_port_register_in(pmt.intern("range"));
         self.message_port_register_in(pmt.intern("filetype"));
+        self.message_port_register_in(pmt.intern("file_open"));
         self.message_port_register_out(pmt.intern("pdus"));
         self.set_msg_handler(pmt.intern("range"), self.range_received)
         self.set_msg_handler(pmt.intern("filetype"), self.filetype_received)
+        self.set_msg_handler(pmt.intern("file_open"), self.file_open)
 
     def start(self):
         self.F = open(self.filename, 'rb')
@@ -62,6 +64,12 @@ class file_message_source(gr.sync_block):
         filetype = pmt.to_python(msg)
         arr = numpy.array([1], dtype=filetype)
         self.itemsize = arr.itemsize
+        self.update_file_range()
+
+    def file_open(self, msg):
+        filename = pmt.to_python(msg)
+        self.filename = filename    
+        self.start()
         self.update_file_range()
 
     def update_file_range(self):

@@ -101,7 +101,7 @@
     </param>
     <param>
       <key>gui_hint</key>
-      <value></value>
+      <value>0,0</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -118,6 +118,37 @@
     <param>
       <key>type</key>
       <value>raw</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_message_debug</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(600, 576)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_message_debug_0</value>
     </param>
   </block>
   <block>
@@ -242,6 +273,49 @@
     </param>
   </block>
   <block>
+    <key>pyqt_open</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(288, 401)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pyqt_open_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
     <key>pyqt_range_input</key>
     <param>
       <key>alias</key>
@@ -265,7 +339,7 @@
     </param>
     <param>
       <key>gui_hint</key>
-      <value>0,0</value>
+      <value>0,1</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -320,7 +394,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>fftsize</key>
@@ -332,7 +406,7 @@
     </param>
     <param>
       <key>gui_hint</key>
-      <value></value>
+      <value>2,1,1,1</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -348,7 +422,7 @@
     </param>
     <param>
       <key>legend</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>alpha1</key>
@@ -607,7 +681,7 @@
     </param>
     <param>
       <key>gui_hint</key>
-      <value></value>
+      <value>1,1,1,1</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -623,7 +697,7 @@
     </param>
     <param>
       <key>legend</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>alpha1</key>
@@ -954,7 +1028,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>fftsize</key>
@@ -966,7 +1040,7 @@
     </param>
     <param>
       <key>gui_hint</key>
-      <value></value>
+      <value>1,0,2,1</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -990,7 +1064,7 @@
     </param>
     <param>
       <key>legend</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>alpha1</key>
@@ -1172,6 +1246,18 @@
     <sink_block_id>qtgui_waterfall_sink_x_0</sink_block_id>
     <source_key>pdus</source_key>
     <sink_key>in</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pyqt_open_0</source_block_id>
+    <sink_block_id>blocks_message_debug_0</sink_block_id>
+    <source_key>filename</source_key>
+    <sink_key>print</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pyqt_open_0</source_block_id>
+    <sink_block_id>pyqt_file_message_souce_0</sink_block_id>
+    <source_key>filename</source_key>
+    <sink_key>file_open</sink_key>
   </connection>
   <connection>
     <source_block_id>pyqt_range_input_0</source_block_id>

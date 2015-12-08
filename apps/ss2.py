@@ -4,7 +4,7 @@
 # GNU Radio Python Flow Graph
 # Title: Such Samples 2, /usr/local/workspace/rel/pybombs/src/test.dat Woww!!
 # Author: Tim O'Shea
-# Generated: Tue Dec  8 14:44:42 2015
+# Generated: Tue Dec  8 17:17:24 2015
 ##################################################
 
 if __name__ == '__main__':
@@ -18,6 +18,7 @@ if __name__ == '__main__':
             print "Warning: failed to XInitThreads()"
 
 from PyQt4 import Qt
+from gnuradio import blocks
 from gnuradio import eng_notation
 from gnuradio import gr
 from gnuradio import qtgui
@@ -74,7 +75,7 @@ class ss2(gr.top_block, Qt.QWidget):
         self._samp_rate_tool_bar.addWidget(self._samp_rate_line_edit)
         self._samp_rate_line_edit.returnPressed.connect(
         	lambda: self.set_samp_rate(eval(str(self._samp_rate_line_edit.text().toAscii()))))
-        self.top_layout.addWidget(self._samp_rate_tool_bar)
+        self.top_grid_layout.addWidget(self._samp_rate_tool_bar, 0,0)
         self.qtgui_waterfall_sink_x_0 = qtgui.waterfall_sink_c(
         	1024, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
@@ -86,7 +87,7 @@ class ss2(gr.top_block, Qt.QWidget):
         self.qtgui_waterfall_sink_x_0.set_update_time(0.10)
         self.qtgui_waterfall_sink_x_0.enable_grid(False)
         
-        if not True:
+        if not False:
           self.qtgui_waterfall_sink_x_0.disable_legend()
         
         if "msg_complex" == "float" or "msg_complex" == "msg_float":
@@ -109,7 +110,7 @@ class ss2(gr.top_block, Qt.QWidget):
         self.qtgui_waterfall_sink_x_0.set_intensity_range(-140, 10)
         
         self._qtgui_waterfall_sink_x_0_win = sip.wrapinstance(self.qtgui_waterfall_sink_x_0.pyqwidget(), Qt.QWidget)
-        self.top_layout.addWidget(self._qtgui_waterfall_sink_x_0_win)
+        self.top_grid_layout.addWidget(self._qtgui_waterfall_sink_x_0_win, 1,0,2,1)
         self.qtgui_time_sink_x_0 = qtgui.time_sink_c(
         	1024, #size
         	samp_rate, #samp_rate
@@ -127,7 +128,7 @@ class ss2(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_0.enable_grid(False)
         self.qtgui_time_sink_x_0.enable_control_panel(False)
         
-        if not True:
+        if not False:
           self.qtgui_time_sink_x_0.disable_legend()
         
         labels = ["", "", "", "", "",
@@ -155,7 +156,7 @@ class ss2(gr.top_block, Qt.QWidget):
             self.qtgui_time_sink_x_0.set_line_alpha(i, alphas[i])
         
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
-        self.top_layout.addWidget(self._qtgui_time_sink_x_0_win)
+        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_win, 1,1,1,1)
         self.qtgui_freq_sink_x_0 = qtgui.freq_sink_c(
         	1024, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
@@ -172,7 +173,7 @@ class ss2(gr.top_block, Qt.QWidget):
         self.qtgui_freq_sink_x_0.set_fft_average(1.0)
         self.qtgui_freq_sink_x_0.enable_control_panel(False)
         
-        if not True:
+        if not False:
           self.qtgui_freq_sink_x_0.disable_legend()
         
         if "msg_complex" == "float" or "msg_complex" == "msg_float":
@@ -196,11 +197,15 @@ class ss2(gr.top_block, Qt.QWidget):
             self.qtgui_freq_sink_x_0.set_line_alpha(i, alphas[i])
         
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
-        self.top_layout.addWidget(self._qtgui_freq_sink_x_0_win)
+        self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_0_win, 2,1,1,1)
         self.pyqt_range_input_0 = pyqt.range_input()
         self._pyqt_range_input_0_win = self.pyqt_range_input_0;
-        self.top_grid_layout.addWidget(self._pyqt_range_input_0_win, 0,0)
+        self.top_grid_layout.addWidget(self._pyqt_range_input_0_win, 0,1)
+        self.pyqt_open_0 = pyqt.file_open()
+        self._pyqt_open_0_win = self.pyqt_open_0;
+        self.top_layout.addWidget(self._pyqt_open_0_win)
         self.pyqt_file_message_souce_0 = pyqt.file_message_source(filename, "complex64")
+        self.blocks_message_debug_0 = blocks.message_debug()
 
         ##################################################
         # Connections
@@ -209,6 +214,8 @@ class ss2(gr.top_block, Qt.QWidget):
         self.msg_connect((self.pyqt_file_message_souce_0, 'pdus'), (self.qtgui_freq_sink_x_0, 'in'))    
         self.msg_connect((self.pyqt_file_message_souce_0, 'pdus'), (self.qtgui_time_sink_x_0, 'in'))    
         self.msg_connect((self.pyqt_file_message_souce_0, 'pdus'), (self.qtgui_waterfall_sink_x_0, 'in'))    
+        self.msg_connect((self.pyqt_open_0, 'filename'), (self.blocks_message_debug_0, 'print'))    
+        self.msg_connect((self.pyqt_open_0, 'filename'), (self.pyqt_file_message_souce_0, 'file_open'))    
         self.msg_connect((self.pyqt_range_input_0, 'range'), (self.pyqt_file_message_souce_0, 'range'))    
 
     def closeEvent(self, event):
