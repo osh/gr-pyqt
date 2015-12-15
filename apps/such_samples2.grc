@@ -113,7 +113,7 @@
     </param>
     <param>
       <key>label</key>
-      <value></value>
+      <value>Center Frequency</value>
     </param>
     <param>
       <key>type</key>
@@ -152,7 +152,7 @@
     </param>
     <param>
       <key>label</key>
-      <value></value>
+      <value>Sample Rate</value>
     </param>
     <param>
       <key>type</key>
