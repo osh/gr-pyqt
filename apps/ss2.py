@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Such Samples 2, /usr/local/workspace/rel/pybombs/src/test.dat Woww!!
+# Title: Such Samples 2, /tmp/such_samples.cfile Woww!!
 # Author: Tim O'Shea
-# Generated: Tue Dec  8 17:17:24 2015
+# Generated: Tue Dec 15 12:07:08 2015
 ##################################################
 
 if __name__ == '__main__':
@@ -24,6 +24,7 @@ from gnuradio import gr
 from gnuradio import qtgui
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
+from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
 import numpy
 import pyqt
@@ -33,10 +34,10 @@ import sys
 
 class ss2(gr.top_block, Qt.QWidget):
 
-    def __init__(self, filename="/usr/local/workspace/rel/pybombs/src/test.dat"):
-        gr.top_block.__init__(self, "Such Samples 2, /usr/local/workspace/rel/pybombs/src/test.dat Woww!!")
+    def __init__(self, filename="/tmp/such_samples.cfile", center_freq=0, samp_rate=2.4e6):
+        gr.top_block.__init__(self, "Such Samples 2, /tmp/such_samples.cfile Woww!!")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("Such Samples 2, /usr/local/workspace/rel/pybombs/src/test.dat Woww!!")
+        self.setWindowTitle("Such Samples 2, /tmp/such_samples.cfile Woww!!")
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
         except:
@@ -60,27 +61,45 @@ class ss2(gr.top_block, Qt.QWidget):
         # Parameters
         ##################################################
         self.filename = filename
+        self.center_freq = center_freq
+        self.samp_rate = samp_rate
 
         ##################################################
         # Variables
         ##################################################
-        self.samp_rate = samp_rate = 1e6
+        self.ymin = ymin = -100
+        self.ymax = ymax = -40
+        self.samp_rate_f = samp_rate_f = samp_rate
+        self.center_freq_f = center_freq_f = center_freq
 
         ##################################################
         # Blocks
         ##################################################
-        self._samp_rate_tool_bar = Qt.QToolBar(self)
-        self._samp_rate_tool_bar.addWidget(Qt.QLabel("samp_rate"+": "))
-        self._samp_rate_line_edit = Qt.QLineEdit(str(self.samp_rate))
-        self._samp_rate_tool_bar.addWidget(self._samp_rate_line_edit)
-        self._samp_rate_line_edit.returnPressed.connect(
-        	lambda: self.set_samp_rate(eval(str(self._samp_rate_line_edit.text().toAscii()))))
-        self.top_grid_layout.addWidget(self._samp_rate_tool_bar, 0,0)
+        self._ymin_range = Range(-160, 20, 5, -100, 200)
+        self._ymin_win = RangeWidget(self._ymin_range, self.set_ymin, "ymin", "counter_slider", int)
+        self.top_grid_layout.addWidget(self._ymin_win, 1,0,1,1)
+        self._ymax_range = Range(-160, 20, 5, -40, 200)
+        self._ymax_win = RangeWidget(self._ymax_range, self.set_ymax, "ymax", "counter_slider", int)
+        self.top_grid_layout.addWidget(self._ymax_win, 1,1,1,1)
+        self._samp_rate_f_tool_bar = Qt.QToolBar(self)
+        self._samp_rate_f_tool_bar.addWidget(Qt.QLabel("samp_rate_f"+": "))
+        self._samp_rate_f_line_edit = Qt.QLineEdit(str(self.samp_rate_f))
+        self._samp_rate_f_tool_bar.addWidget(self._samp_rate_f_line_edit)
+        self._samp_rate_f_line_edit.returnPressed.connect(
+        	lambda: self.set_samp_rate_f(eval(str(self._samp_rate_f_line_edit.text().toAscii()))))
+        self.top_grid_layout.addWidget(self._samp_rate_f_tool_bar, 0,0,1,1)
+        self._center_freq_f_tool_bar = Qt.QToolBar(self)
+        self._center_freq_f_tool_bar.addWidget(Qt.QLabel("center_freq_f"+": "))
+        self._center_freq_f_line_edit = Qt.QLineEdit(str(self.center_freq_f))
+        self._center_freq_f_tool_bar.addWidget(self._center_freq_f_line_edit)
+        self._center_freq_f_line_edit.returnPressed.connect(
+        	lambda: self.set_center_freq_f(eng_notation.str_to_num(str(self._center_freq_f_line_edit.text().toAscii()))))
+        self.top_grid_layout.addWidget(self._center_freq_f_tool_bar, 0,1,1,1)
         self.qtgui_waterfall_sink_x_0 = qtgui.waterfall_sink_c(
         	1024, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
-        	0, #fc
-        	samp_rate, #bw
+        	center_freq_f, #fc
+        	samp_rate_f, #bw
         	"", #name
                 0 #number of inputs
         )
@@ -107,13 +126,13 @@ class ss2(gr.top_block, Qt.QWidget):
             self.qtgui_waterfall_sink_x_0.set_color_map(i, colors[i])
             self.qtgui_waterfall_sink_x_0.set_line_alpha(i, alphas[i])
         
-        self.qtgui_waterfall_sink_x_0.set_intensity_range(-140, 10)
+        self.qtgui_waterfall_sink_x_0.set_intensity_range(ymin, ymax)
         
         self._qtgui_waterfall_sink_x_0_win = sip.wrapinstance(self.qtgui_waterfall_sink_x_0.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_waterfall_sink_x_0_win, 1,0,2,1)
+        self.top_grid_layout.addWidget(self._qtgui_waterfall_sink_x_0_win, 2,0,2,2)
         self.qtgui_time_sink_x_0 = qtgui.time_sink_c(
         	1024, #size
-        	samp_rate, #samp_rate
+        	samp_rate_f, #samp_rate
         	"", #name
         	0 #number of inputs
         )
@@ -156,17 +175,17 @@ class ss2(gr.top_block, Qt.QWidget):
             self.qtgui_time_sink_x_0.set_line_alpha(i, alphas[i])
         
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_win, 1,1,1,1)
+        self.top_grid_layout.addWidget(self._qtgui_time_sink_x_0_win, 2,2,1,1)
         self.qtgui_freq_sink_x_0 = qtgui.freq_sink_c(
         	1024, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
-        	0, #fc
-        	samp_rate, #bw
+        	center_freq_f, #fc
+        	samp_rate_f, #bw
         	"", #name
         	0 #number of inputs
         )
         self.qtgui_freq_sink_x_0.set_update_time(0.10)
-        self.qtgui_freq_sink_x_0.set_y_axis(-140, 10)
+        self.qtgui_freq_sink_x_0.set_y_axis(ymin, ymax)
         self.qtgui_freq_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
         self.qtgui_freq_sink_x_0.enable_autoscale(True)
         self.qtgui_freq_sink_x_0.enable_grid(False)
@@ -197,10 +216,10 @@ class ss2(gr.top_block, Qt.QWidget):
             self.qtgui_freq_sink_x_0.set_line_alpha(i, alphas[i])
         
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_0_win, 2,1,1,1)
+        self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_0_win, 3,2,1,1)
         self.pyqt_range_input_0 = pyqt.range_input()
         self._pyqt_range_input_0_win = self.pyqt_range_input_0;
-        self.top_grid_layout.addWidget(self._pyqt_range_input_0_win, 0,1)
+        self.top_grid_layout.addWidget(self._pyqt_range_input_0_win, 0,2,1,2)
         self.pyqt_open_0 = pyqt.file_open()
         self._pyqt_open_0_win = self.pyqt_open_0;
         self.top_layout.addWidget(self._pyqt_open_0_win)
@@ -230,22 +249,67 @@ class ss2(gr.top_block, Qt.QWidget):
     def set_filename(self, filename):
         self.filename = filename
 
+    def get_center_freq(self):
+        return self.center_freq
+
+    def set_center_freq(self, center_freq):
+        self.center_freq = center_freq
+        self.set_center_freq_f(self.center_freq)
+
     def get_samp_rate(self):
         return self.samp_rate
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        Qt.QMetaObject.invokeMethod(self._samp_rate_line_edit, "setText", Qt.Q_ARG("QString", repr(self.samp_rate)))
-        self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
-        self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
-        self.qtgui_waterfall_sink_x_0.set_frequency_range(0, self.samp_rate)
+        self.set_samp_rate_f(self.samp_rate)
+
+    def get_ymin(self):
+        return self.ymin
+
+    def set_ymin(self, ymin):
+        self.ymin = ymin
+        self.qtgui_freq_sink_x_0.set_y_axis(self.ymin, self.ymax)
+        self.qtgui_waterfall_sink_x_0.set_intensity_range(self.ymin, self.ymax)
+
+    def get_ymax(self):
+        return self.ymax
+
+    def set_ymax(self, ymax):
+        self.ymax = ymax
+        self.qtgui_freq_sink_x_0.set_y_axis(self.ymin, self.ymax)
+        self.qtgui_waterfall_sink_x_0.set_intensity_range(self.ymin, self.ymax)
+
+    def get_samp_rate_f(self):
+        return self.samp_rate_f
+
+    def set_samp_rate_f(self, samp_rate_f):
+        self.samp_rate_f = samp_rate_f
+        self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate_f)
+        Qt.QMetaObject.invokeMethod(self._samp_rate_f_line_edit, "setText", Qt.Q_ARG("QString", repr(self.samp_rate_f)))
+        self.qtgui_freq_sink_x_0.set_frequency_range(self.center_freq_f, self.samp_rate_f)
+        self.qtgui_waterfall_sink_x_0.set_frequency_range(self.center_freq_f, self.samp_rate_f)
+
+    def get_center_freq_f(self):
+        return self.center_freq_f
+
+    def set_center_freq_f(self, center_freq_f):
+        self.center_freq_f = center_freq_f
+        self.qtgui_freq_sink_x_0.set_frequency_range(self.center_freq_f, self.samp_rate_f)
+        Qt.QMetaObject.invokeMethod(self._center_freq_f_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.center_freq_f)))
+        self.qtgui_waterfall_sink_x_0.set_frequency_range(self.center_freq_f, self.samp_rate_f)
 
 
 def argument_parser():
     parser = OptionParser(option_class=eng_option, usage="%prog: [options]")
     parser.add_option(
-        "", "--filename", dest="filename", type="string", default="/usr/local/workspace/rel/pybombs/src/test.dat",
+        "", "--filename", dest="filename", type="string", default="/tmp/such_samples.cfile",
         help="Set filename [default=%default]")
+    parser.add_option(
+        "", "--center-freq", dest="center_freq", type="eng_float", default=eng_notation.num_to_str(0),
+        help="Set center_freq [default=%default]")
+    parser.add_option(
+        "", "--samp-rate", dest="samp_rate", type="eng_float", default=eng_notation.num_to_str(2.4e6),
+        help="Set samp_rate [default=%default]")
     return parser
 
 
@@ -259,7 +323,7 @@ def main(top_block_cls=ss2, options=None):
         Qt.QApplication.setGraphicsSystem(style)
     qapp = Qt.QApplication(sys.argv)
 
-    tb = top_block_cls(filename=options.filename)
+    tb = top_block_cls(filename=options.filename, center_freq=options.center_freq, samp_rate=options.samp_rate)
     tb.start()
     tb.show()
 
