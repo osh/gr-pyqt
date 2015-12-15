@@ -27,9 +27,9 @@ from PyQt4 import Qt, QtCore, QtGui
 import pmt,pprint
 
 class file_open(gr.sync_block, QtGui.QPushButton):
-    def __init__(self, blkname="file_open", label="", *args):
+    def __init__(self, blkname="file_open", label='Open', *args):
         gr.sync_block.__init__(self,blkname,[],[])
-        QtGui.QPushButton.__init__(self, QtGui.QIcon.fromTheme("open"), "Open", *args)
+        QtGui.QPushButton.__init__(self, QtGui.QIcon.fromTheme("open"), label, *args)
         self.message_port_register_out(pmt.intern("filename"));
         self.clicked.connect(self.open_file)
    

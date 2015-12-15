@@ -5,10 +5,17 @@
   <category>pyqt</category>
   <import>import pyqt</import>
   <make>#set $win = 'self._%s_win'%$id
-pyqt.file_open()
+pyqt.file_open(label=$label)
 self._$(id)_win = self.$(id);
 $(gui_hint()($win))
 </make>
+
+  <param>
+    <name>Button Label</name>
+    <key>label</key>
+    <value>Open</value>
+    <type>string</type>
+  </param>
 
   <param>
     <name>GUI Hint</name>
