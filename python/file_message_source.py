@@ -44,12 +44,15 @@ class file_message_source(gr.sync_block):
         self.set_msg_handler(pmt.intern("file_open"), self.file_open)
 
     def start(self):
-        self.F = open(self.filename, 'rb')
-        self.F.seek(0, os.SEEK_END)
-        (s,l) = (0,self.F.tell()/self.itemsize)
-        self.message_port_pub(pmt.intern("file_range"), 
-            pmt.cons(pmt.from_long(s),pmt.from_long(l)))
-        return True
+        try:
+            self.F = open(self.filename, 'rb')
+            self.F.seek(0, os.SEEK_END)
+            (s,l) = (0,self.F.tell()/self.itemsize)
+            self.message_port_pub(pmt.intern("file_range"), 
+                pmt.cons(pmt.from_long(s),pmt.from_long(l)))
+            return True
+        except:
+            return False
 
     def stop(self):
         self.F.close()
@@ -67,21 +70,25 @@ class file_message_source(gr.sync_block):
         self.update_file_range()
 
     def file_open(self, msg):
+        print "open"
         filename = pmt.to_python(msg)
         self.filename = filename    
         self.start()
         self.update_file_range()
 
     def update_file_range(self):
-        (s,l) = self.f_range
-        meta = {"start":s, "len":l, "end":s+l, "filename":self.filename}
-        self.F.seek(s*self.itemsize)
-        vec = numpy.fromfile(self.F, dtype=self.filetype, count=l, sep='')
-        vec = numpy.array(vec, dtype="complex64")
-        self.message_port_pub(pmt.intern("pdus"), 
-            pmt.cons(
-                pmt.to_pmt(meta),
-                pmt.to_pmt(vec) ))
+        try:
+            (s,l) = self.f_range
+            meta = {"start":s, "len":l, "end":s+l, "filename":self.filename}
+            self.F.seek(s*self.itemsize)
+            vec = numpy.fromfile(self.F, dtype=self.filetype, count=l, sep='')
+            vec = numpy.array(vec, dtype="complex64")
+            self.message_port_pub(pmt.intern("pdus"), 
+                pmt.cons(
+                    pmt.to_pmt(meta),
+                    pmt.to_pmt(vec) ))
+        except:
+            pass
         
     def work(self, input_items, output_items):
         pass
