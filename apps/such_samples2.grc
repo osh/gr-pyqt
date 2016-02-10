@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.9'?>
+<?grc format='1' created='3.7.10'?>
 <flow_graph>
   <timestamp>Thu May 21 09:46:09 2015</timestamp>
   <block>
@@ -434,6 +434,53 @@
     </param>
   </block>
   <block>
+    <key>pyqt_file_message_sink</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>filetype</key>
+      <value>"complex64"</value>
+    </param>
+    <param>
+      <key>filename</key>
+      <value>filename+".excerpt"</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(784, 602)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pyqt_file_message_sink_0</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Save Segment</value>
+    </param>
+  </block>
+  <block>
     <key>pyqt_file_message_souce</key>
     <param>
       <key>alias</key>
@@ -485,6 +532,10 @@
     <param>
       <key>alias</key>
       <value></value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Open</value>
     </param>
     <param>
       <key>comment</key>
@@ -1479,6 +1530,12 @@
     <sink_block_id>pyqt_range_input_0</sink_block_id>
     <source_key>file_range</source_key>
     <sink_key>file_range</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pyqt_file_message_souce_0</source_block_id>
+    <sink_block_id>pyqt_file_message_sink_0</sink_block_id>
+    <source_key>pdus</source_key>
+    <sink_key>pdus</sink_key>
   </connection>
   <connection>
     <source_block_id>pyqt_file_message_souce_0</source_block_id>

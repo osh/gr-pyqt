@@ -4,7 +4,7 @@
 # GNU Radio Python Flow Graph
 # Title: Such Samples 2, /tmp/such_samples.cfile Woww!!
 # Author: Tim O'Shea
-# Generated: Tue Dec 15 12:23:03 2015
+# Generated: Wed Feb 10 12:12:25 2016
 ##################################################
 
 if __name__ == '__main__':
@@ -220,15 +220,19 @@ class ss2(gr.top_block, Qt.QWidget):
         self.pyqt_range_input_0 = pyqt.range_input()
         self._pyqt_range_input_0_win = self.pyqt_range_input_0;
         self.top_grid_layout.addWidget(self._pyqt_range_input_0_win, 0,2,1,2)
-        self.pyqt_open_0 = pyqt.file_open()
+        self.pyqt_open_0 = pyqt.file_open(label="Open")
         self._pyqt_open_0_win = self.pyqt_open_0;
         self.top_layout.addWidget(self._pyqt_open_0_win)
         self.pyqt_file_message_souce_0 = pyqt.file_message_source(filename, "complex64")
+        self.pyqt_file_message_sink_0 = pyqt.file_message_sink(filename+".excerpt", "complex64", "Save Segment")
+        self._pyqt_file_message_sink_0_win = self.pyqt_file_message_sink_0;
+        self.top_layout.addWidget(self._pyqt_file_message_sink_0_win)
         self.blocks_message_debug_0 = blocks.message_debug()
 
         ##################################################
         # Connections
         ##################################################
+        self.msg_connect((self.pyqt_file_message_souce_0, 'pdus'), (self.pyqt_file_message_sink_0, 'pdus'))    
         self.msg_connect((self.pyqt_file_message_souce_0, 'file_range'), (self.pyqt_range_input_0, 'file_range'))    
         self.msg_connect((self.pyqt_file_message_souce_0, 'pdus'), (self.qtgui_freq_sink_x_0, 'in'))    
         self.msg_connect((self.pyqt_file_message_souce_0, 'pdus'), (self.qtgui_time_sink_x_0, 'in'))    
@@ -284,19 +288,19 @@ class ss2(gr.top_block, Qt.QWidget):
 
     def set_samp_rate_f(self, samp_rate_f):
         self.samp_rate_f = samp_rate_f
+        Qt.QMetaObject.invokeMethod(self._samp_rate_f_line_edit, "setText", Qt.Q_ARG("QString", repr(self.samp_rate_f)))
         self.qtgui_freq_sink_x_0.set_frequency_range(self.center_freq_f, self.samp_rate_f)
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate_f)
         self.qtgui_waterfall_sink_x_0.set_frequency_range(self.center_freq_f, self.samp_rate_f)
-        Qt.QMetaObject.invokeMethod(self._samp_rate_f_line_edit, "setText", Qt.Q_ARG("QString", repr(self.samp_rate_f)))
 
     def get_center_freq_f(self):
         return self.center_freq_f
 
     def set_center_freq_f(self, center_freq_f):
         self.center_freq_f = center_freq_f
+        Qt.QMetaObject.invokeMethod(self._center_freq_f_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.center_freq_f)))
         self.qtgui_freq_sink_x_0.set_frequency_range(self.center_freq_f, self.samp_rate_f)
         self.qtgui_waterfall_sink_x_0.set_frequency_range(self.center_freq_f, self.samp_rate_f)
-        Qt.QMetaObject.invokeMethod(self._center_freq_f_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.center_freq_f)))
 
 
 def argument_parser():
