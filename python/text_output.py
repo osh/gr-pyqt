@@ -20,14 +20,12 @@
 # Boston, MA 02110-1301, USA.
 #
 import numpy
-from gnuradio import gr;
-import pylab
-import numpy
+from gnuradio import gr
 from PyQt4 import Qt, QtCore, QtGui
 import pmt
 
 class text_output(gr.sync_block, QtGui.QTextEdit):
-    __pyqtSignals__ = ("updateText(int)")
+    __pyqtSignals__ = ("updateText(QString)")
     def __init__(self, blkname="text_output", label="", *args):
         gr.sync_block.__init__(self,blkname,[],[])
         QtGui.QTextEdit.__init__(self, *args)
@@ -35,17 +33,15 @@ class text_output(gr.sync_block, QtGui.QTextEdit):
         self.set_msg_handler(pmt.intern("pdus"), self.handle_input);
         # connect the plot callback signal
         QtCore.QObject.connect(self,
-                       QtCore.SIGNAL("updateText(int)"),
-                       self.updateText)
+                       QtCore.SIGNAL("updateText(QString)"),
+                       self,
+                       QtCore.SLOT("append(QString)"))
 
     def handle_input(self, msg):
-        vec = pmt.cdr(msg);
-        nvec = pmt.to_python(vec);
-        self.s = str(nvec.tostring());
-        self.emit(QtCore.SIGNAL("updateText(int)"), 0)
-
-    def updateText(self, a):
-        self.append(self.s);
+        vec = pmt.cdr(msg)
+        nvec = pmt.to_python(vec)
+        s = str(nvec.tostring())
+        self.emit(QtCore.SIGNAL("updateText(QString)"), s)
 
     def work(self, input_items, output_items):
         pass
