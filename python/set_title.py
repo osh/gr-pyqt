@@ -33,11 +33,12 @@ class set_title(gr.sync_block):
         self.set_msg_handler(pmt.intern("name"), self.handler)
         self.prefix = prefix
         self.parent = parent
+        self.n = ""
 
     def handler(self,msg):
         try:
-            n = pmt.to_python(msg)
-            self.parent.setWindowTitle(self.prefix + n)
+            self.n = str(pmt.to_python(msg))
+            self.parent.setWindowTitle(self.prefix + self.n)
         except:
             pass
 

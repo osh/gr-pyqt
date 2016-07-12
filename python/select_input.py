@@ -37,10 +37,8 @@ class select_input(gr.sync_block, QtGui.QComboBox):
             self.addItem(o)
 
     def start(self):
-        try:
-            self.selection_changed()
-        except:
-            pass
+        self.selection_changed()
+        return True
 
     def selection_changed(self):
         s = str(self.currentText().toUtf8())

@@ -301,7 +301,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -449,7 +449,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>filetype</key>
@@ -496,7 +496,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>filetype</key>
@@ -547,7 +547,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -590,7 +590,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -633,11 +633,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>True</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(0, 256)</value>
+      <value>(8, 288)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -649,7 +649,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>pyqt_select_input_0</value>
+      <value>pyqt_select_input_1</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -661,7 +661,7 @@
     </param>
     <param>
       <key>opt</key>
-      <value>['complex64', 'c_int16', 'c_uint16', 'c_int32', 'c_uint32']</value>
+      <value>['c_int16', 'c_uint16', 'c_int32', 'c_uint32', 'complex64', 'float32']</value>
     </param>
   </block>
   <block>
@@ -680,7 +680,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1030,7 +1030,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1682,7 +1682,7 @@
     <sink_key>range</sink_key>
   </connection>
   <connection>
-    <source_block_id>pyqt_select_input_0</source_block_id>
+    <source_block_id>pyqt_select_input_1</source_block_id>
     <sink_block_id>pyqt_file_message_souce_0</sink_block_id>
     <source_key>pdus</source_key>
     <sink_key>file_type</sink_key>
