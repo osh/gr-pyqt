@@ -27,11 +27,8 @@ import pmt,pprint
 class file_message_source(gr.sync_block):
     def __init__(self,filename,filetype="complex64"):
         gr.sync_block.__init__(self,"file_message_source",[],[])
-
-        # store locals
-        arr = numpy.array([1], dtype=filetype)
-        (self.filename, self.filetype, self.itemsize) = (filename, filetype, arr.itemsize)
-        self.F = None
+        self.filename = filename
+        self.set_filetype(filetype)
 
         # set up message ports
         self.message_port_register_out(pmt.intern("file_range"));
@@ -42,6 +39,21 @@ class file_message_source(gr.sync_block):
         self.set_msg_handler(pmt.intern("range"), self.range_received)
         self.set_msg_handler(pmt.intern("filetype"), self.filetype_received)
         self.set_msg_handler(pmt.intern("file_open"), self.file_open)
+
+    def set_filetype(self, filetype):
+        self.force_complex = False
+        if(filetype[0:2] == 'c_'):
+            self.force_complex = True
+            filetype = filetype[2:]
+         
+        # store locals
+        arr = numpy.array([1], dtype=filetype)
+        if self.force_complex:
+            (self.filetype, self.itemsize) = (filetype, 2*arr.itemsize)
+        else:
+            (self.filetype, self.itemsize) = (filetype, arr.itemsize)
+        self.F = None
+        self.update_file_range()
 
     def start(self):
         try:
@@ -65,9 +77,7 @@ class file_message_source(gr.sync_block):
 
     def filetype_received(self, msg):
         filetype = pmt.to_python(msg)
-        arr = numpy.array([1], dtype=filetype)
-        self.itemsize = arr.itemsize
-        self.update_file_range()
+        self.set_filetype(filetype)
 
     def file_open(self, msg):
         print "open"
@@ -81,7 +91,11 @@ class file_message_source(gr.sync_block):
             (s,l) = self.f_range
             meta = {"start":s, "len":l, "end":s+l, "filename":self.filename}
             self.F.seek(s*self.itemsize)
-            vec = numpy.fromfile(self.F, dtype=self.filetype, count=l, sep='')
+            if self.force_complex:
+                vec = numpy.fromfile(self.F, dtype=self.filetype, count=2*l, sep='')
+                vec = vec[0::2] + 1j*vec[1::2]
+            else:
+                vec = numpy.fromfile(self.F, dtype=self.filetype, count=l, sep='')
             vec = numpy.array(vec, dtype="complex64")
             self.message_port_pub(pmt.intern("pdus"), 
                 pmt.cons(

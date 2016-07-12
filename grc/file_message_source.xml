@@ -6,6 +6,8 @@
   <import>import pyqt</import>
   <make>pyqt.file_message_source($filename, $filetype)</make>
 
+  <callback>set_filetype($filetype)</callback>
+
   <param>
     <name>Filename</name>
     <key>filename</key>
@@ -42,32 +44,64 @@
         <key>"int8"</key>
     </option>
     <option>
+        <name>Complex Int8</name>
+        <key>"c_int8"</key>
+    </option>
+    <option>
         <name>Int16</name>
         <key>"int16"</key>
+    </option>
+    <option>
+        <name>Complex Int16</name>
+        <key>"c_int16"</key>
     </option>
     <option>
         <name>Int32</name>
         <key>"int32"</key>
     </option>
     <option>
+        <name>Complex Int32</name>
+        <key>"c_int32"</key>
+    </option>
+    <option>
         <name>Int64</name>
         <key>"int64"</key>
+    </option>
+    <option>
+        <name>Complex Int64</name>
+        <key>"c_int64"</key>
     </option>
     <option>
         <name>Uint8</name>
         <key>"uint8"</key>
     </option>
     <option>
+        <name>Complex Uint8</name>
+        <key>"c_uint8"</key>
+    </option>
+    <option>
         <name>Uint16</name>
         <key>"uint16"</key>
+    </option>
+    <option>
+        <name>Complex Uint16</name>
+        <key>"c_uint16"</key>
     </option>
     <option>
         <name>Uint32</name>
         <key>"uint32"</key>
     </option>
     <option>
+        <name>Complex Uint32</name>
+        <key>"c_uint32"</key>
+    </option>
+    <option>
         <name>Uint64</name>
         <key>"uint64"</key>
+    </option>
+    <option>
+        <name>Complex Uint64</name>
+        <key>"c_uint64"</key>
     </option>
   </param>
 
