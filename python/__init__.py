@@ -72,6 +72,7 @@ from trim_tail import *
 from file_message_source import *
 from file_message_sink import *
 from file_open import *
+from set_title import *
 from table import *
 from dict_ui_source import *
 

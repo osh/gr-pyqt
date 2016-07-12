@@ -665,6 +665,41 @@
     </param>
   </block>
   <block>
+    <key>pyqt_set_title</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(432, 608)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pyqt_set_title_0</value>
+    </param>
+    <param>
+      <key>prefix</key>
+      <value>Such Samples: </value>
+    </param>
+  </block>
+  <block>
     <key>qtgui_freq_sink_x</key>
     <param>
       <key>autoscale</key>
@@ -1633,6 +1668,12 @@
     <sink_block_id>pyqt_file_message_souce_0</sink_block_id>
     <source_key>filename</source_key>
     <sink_key>file_open</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pyqt_open_0</source_block_id>
+    <sink_block_id>pyqt_set_title_0</sink_block_id>
+    <source_key>filename</source_key>
+    <sink_key>name</sink_key>
   </connection>
   <connection>
     <source_block_id>pyqt_range_input_0</source_block_id>

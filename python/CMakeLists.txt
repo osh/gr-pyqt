@@ -32,6 +32,7 @@ GR_PYTHON_INSTALL(
     FILES
     __init__.py
     pdu_lambda.py
+    set_title.py
     stream_lambda.py
     const_plot.py
     ctime_plot.py

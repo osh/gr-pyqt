@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<block>
+  <name>PyQT Set Title</name>
+  <key>pyqt_set_title</key>
+  <category>pyqt</category>
+  <import>import pyqt</import>
+  <make>pyqt.set_title(parent=self, prefix=$prefix)</make>
+
+  <param>
+    <name>Prefix</name>
+    <key>prefix</key>
+    <value>Such Samples: </value>
+    <type>string</type>
+  </param>
+
+  <sink>
+    <name>name</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+</block>

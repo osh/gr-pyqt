@@ -4,7 +4,7 @@
 # GNU Radio Python Flow Graph
 # Title: Such Samples 2, /tmp/such_samples.cfile Woww!!
 # Author: Tim O'Shea
-# Generated: Tue Jul 12 11:00:45 2016
+# Generated: Tue Jul 12 11:22:56 2016
 ##################################################
 
 if __name__ == '__main__':
@@ -221,6 +221,7 @@ class ss2(gr.top_block, Qt.QWidget):
         
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
         self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_0_win, 3,2,1,1)
+        self.pyqt_set_title_0 = pyqt.set_title(parent=self, prefix="Such Samples: ")
         self.pyqt_select_input_0 = pyqt.select_input(opt=['complex64', 'c_int16', 'c_uint16', 'c_int32', 'c_uint32'])
         self._pyqt_select_input_0_win = self.pyqt_select_input_0;
         self.top_grid_layout.addWidget(self._pyqt_select_input_0_win, 1,2,1,1)
@@ -246,6 +247,7 @@ class ss2(gr.top_block, Qt.QWidget):
         self.msg_connect((self.pyqt_file_message_souce_0, 'pdus'), (self.qtgui_waterfall_sink_x_0, 'in'))    
         self.msg_connect((self.pyqt_open_0, 'filename'), (self.blocks_message_debug_0, 'print'))    
         self.msg_connect((self.pyqt_open_0, 'filename'), (self.pyqt_file_message_souce_0, 'file_open'))    
+        self.msg_connect((self.pyqt_open_0, 'filename'), (self.pyqt_set_title_0, 'name'))    
         self.msg_connect((self.pyqt_range_input_0, 'range'), (self.pyqt_file_message_souce_0, 'range'))    
         self.msg_connect((self.pyqt_select_input_0, 'pdus'), (self.pyqt_file_message_souce_0, 'file_type'))    
 

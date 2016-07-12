@@ -26,26 +26,20 @@ import numpy
 from PyQt4 import Qt, QtCore, QtGui
 import pmt
 
-class select_input(gr.sync_block, QtGui.QComboBox):
-    def __init__(self, blkname="select_input", opt=[], label="", *args):
+class set_title(gr.sync_block):
+    def __init__(self, blkname="set_title", prefix="Title: ", parent=None):
         gr.sync_block.__init__(self,blkname,[],[])
-        QtGui.QComboBox.__init__(self, *args)
-        self.activated.connect(self.selection_changed);
-        self.message_port_register_out(pmt.intern("pdus"));
+        self.message_port_register_in(pmt.intern("name"));
+        self.set_msg_handler(pmt.intern("name"), self.handler)
+        self.prefix = prefix
+        self.parent = parent
 
-        for o in opt:
-            self.addItem(o)
-
-    def start(self):
+    def handler(self,msg):
         try:
-            self.selection_changed()
+            n = pmt.to_python(msg)
+            self.parent.setWindowTitle(self.prefix + n)
         except:
             pass
-
-    def selection_changed(self):
-        s = str(self.currentText().toUtf8())
-        dt = pmt.to_pmt(s);
-        self.message_port_pub(pmt.intern("pdus"), dt);
 
     def work(self, input_items, output_items):
         pass
