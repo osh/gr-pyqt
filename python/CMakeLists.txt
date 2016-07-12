@@ -45,6 +45,7 @@ GR_PYTHON_INSTALL(
     plotter_base.py
     pdu_meta_extract.py
     text_input.py
+    select_input.py
     variable_text_input.py
     range_input.py
     text_output.py

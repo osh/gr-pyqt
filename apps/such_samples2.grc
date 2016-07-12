@@ -618,6 +618,53 @@
     </param>
   </block>
   <block>
+    <key>pyqt_select_input</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(0, 256)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>1,2,1,1</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pyqt_select_input_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>opt</key>
+      <value>['complex64', 'c_int16', 'c_uint16', 'c_int32', 'c_uint32']</value>
+    </param>
+  </block>
+  <block>
     <key>qtgui_freq_sink_x</key>
     <param>
       <key>autoscale</key>
@@ -626,6 +673,10 @@
     <param>
       <key>average</key>
       <value>1.0</value>
+    </param>
+    <param>
+      <key>axislabels</key>
+      <value>True</value>
     </param>
     <param>
       <key>bw</key>
@@ -896,6 +947,10 @@
       <value>firdes.WIN_BLACKMAN_hARRIS</value>
     </param>
     <param>
+      <key>label</key>
+      <value>Relative Gain</value>
+    </param>
+    <param>
       <key>ymax</key>
       <value>ymax</value>
     </param>
@@ -903,11 +958,19 @@
       <key>ymin</key>
       <value>ymin</value>
     </param>
+    <param>
+      <key>units</key>
+      <value>dB</value>
+    </param>
   </block>
   <block>
     <key>qtgui_time_sink_x</key>
     <param>
       <key>autoscale</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>axislabels</key>
       <value>True</value>
     </param>
     <param>
@@ -1266,6 +1329,10 @@
   <block>
     <key>qtgui_waterfall_sink_x</key>
     <param>
+      <key>axislabels</key>
+      <value>True</value>
+    </param>
+    <param>
       <key>bw</key>
       <value>samp_rate_f</value>
     </param>
@@ -1572,5 +1639,11 @@
     <sink_block_id>pyqt_file_message_souce_0</sink_block_id>
     <source_key>range</source_key>
     <sink_key>range</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pyqt_select_input_0</source_block_id>
+    <sink_block_id>pyqt_file_message_souce_0</sink_block_id>
+    <source_key>pdus</source_key>
+    <sink_key>file_type</sink_key>
   </connection>
 </flow_graph>

@@ -29,15 +29,16 @@ class file_message_source(gr.sync_block):
         gr.sync_block.__init__(self,"file_message_source",[],[])
         self.filename = filename
         self.set_filetype(filetype)
+        self.F = None
 
         # set up message ports
         self.message_port_register_out(pmt.intern("file_range"));
         self.message_port_register_in(pmt.intern("range"));
-        self.message_port_register_in(pmt.intern("filetype"));
+        self.message_port_register_in(pmt.intern("file_type"));
         self.message_port_register_in(pmt.intern("file_open"));
         self.message_port_register_out(pmt.intern("pdus"));
         self.set_msg_handler(pmt.intern("range"), self.range_received)
-        self.set_msg_handler(pmt.intern("filetype"), self.filetype_received)
+        self.set_msg_handler(pmt.intern("file_type"), self.filetype_received)
         self.set_msg_handler(pmt.intern("file_open"), self.file_open)
 
     def set_filetype(self, filetype):
@@ -52,7 +53,6 @@ class file_message_source(gr.sync_block):
             (self.filetype, self.itemsize) = (filetype, 2*arr.itemsize)
         else:
             (self.filetype, self.itemsize) = (filetype, arr.itemsize)
-        self.F = None
         self.update_file_range()
 
     def start(self):
@@ -78,6 +78,7 @@ class file_message_source(gr.sync_block):
     def filetype_received(self, msg):
         filetype = pmt.to_python(msg)
         self.set_filetype(filetype)
+        self.update_file_range()
 
     def file_open(self, msg):
         print "open"

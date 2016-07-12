@@ -61,6 +61,7 @@ from value_hist import *;
 from cpower_plot import *;
 from pdu_meta_extract import *;
 from text_input import *;
+from select_input import *;
 from variable_text_input import *;
 from range_input import *;
 from text_output import *;

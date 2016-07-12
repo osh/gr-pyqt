@@ -31,6 +31,7 @@ install(FILES
     cpower_plot.xml
     pdu_meta_extract.xml
     text_input.xml
+    select_input.xml
     variable_text_input.xml
     range_input.xml
     text_output.xml

@@ -4,7 +4,7 @@
 # GNU Radio Python Flow Graph
 # Title: Such Samples 2, /tmp/such_samples.cfile Woww!!
 # Author: Tim O'Shea
-# Generated: Wed Feb 10 12:12:25 2016
+# Generated: Tue Jul 12 11:00:45 2016
 ##################################################
 
 if __name__ == '__main__':
@@ -105,6 +105,7 @@ class ss2(gr.top_block, Qt.QWidget):
         )
         self.qtgui_waterfall_sink_x_0.set_update_time(0.10)
         self.qtgui_waterfall_sink_x_0.enable_grid(False)
+        self.qtgui_waterfall_sink_x_0.enable_axis_labels(True)
         
         if not False:
           self.qtgui_waterfall_sink_x_0.disable_legend()
@@ -145,6 +146,7 @@ class ss2(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
         self.qtgui_time_sink_x_0.enable_autoscale(True)
         self.qtgui_time_sink_x_0.enable_grid(False)
+        self.qtgui_time_sink_x_0.enable_axis_labels(True)
         self.qtgui_time_sink_x_0.enable_control_panel(False)
         
         if not False:
@@ -186,10 +188,12 @@ class ss2(gr.top_block, Qt.QWidget):
         )
         self.qtgui_freq_sink_x_0.set_update_time(0.10)
         self.qtgui_freq_sink_x_0.set_y_axis(ymin, ymax)
+        self.qtgui_freq_sink_x_0.set_y_label("Relative Gain", "dB")
         self.qtgui_freq_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
         self.qtgui_freq_sink_x_0.enable_autoscale(True)
         self.qtgui_freq_sink_x_0.enable_grid(False)
         self.qtgui_freq_sink_x_0.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0.enable_axis_labels(True)
         self.qtgui_freq_sink_x_0.enable_control_panel(False)
         
         if not False:
@@ -217,6 +221,9 @@ class ss2(gr.top_block, Qt.QWidget):
         
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
         self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_0_win, 3,2,1,1)
+        self.pyqt_select_input_0 = pyqt.select_input(opt=['complex64', 'c_int16', 'c_uint16', 'c_int32', 'c_uint32'])
+        self._pyqt_select_input_0_win = self.pyqt_select_input_0;
+        self.top_grid_layout.addWidget(self._pyqt_select_input_0_win, 1,2,1,1)
         self.pyqt_range_input_0 = pyqt.range_input()
         self._pyqt_range_input_0_win = self.pyqt_range_input_0;
         self.top_grid_layout.addWidget(self._pyqt_range_input_0_win, 0,2,1,2)
@@ -240,12 +247,12 @@ class ss2(gr.top_block, Qt.QWidget):
         self.msg_connect((self.pyqt_open_0, 'filename'), (self.blocks_message_debug_0, 'print'))    
         self.msg_connect((self.pyqt_open_0, 'filename'), (self.pyqt_file_message_souce_0, 'file_open'))    
         self.msg_connect((self.pyqt_range_input_0, 'range'), (self.pyqt_file_message_souce_0, 'range'))    
+        self.msg_connect((self.pyqt_select_input_0, 'pdus'), (self.pyqt_file_message_souce_0, 'file_type'))    
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "ss2")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
-
 
     def get_center_freq(self):
         return self.center_freq
@@ -272,16 +279,16 @@ class ss2(gr.top_block, Qt.QWidget):
 
     def set_ymin(self, ymin):
         self.ymin = ymin
-        self.qtgui_freq_sink_x_0.set_y_axis(self.ymin, self.ymax)
         self.qtgui_waterfall_sink_x_0.set_intensity_range(self.ymin, self.ymax)
+        self.qtgui_freq_sink_x_0.set_y_axis(self.ymin, self.ymax)
 
     def get_ymax(self):
         return self.ymax
 
     def set_ymax(self, ymax):
         self.ymax = ymax
-        self.qtgui_freq_sink_x_0.set_y_axis(self.ymin, self.ymax)
         self.qtgui_waterfall_sink_x_0.set_intensity_range(self.ymin, self.ymax)
+        self.qtgui_freq_sink_x_0.set_y_axis(self.ymin, self.ymax)
 
     def get_samp_rate_f(self):
         return self.samp_rate_f
@@ -289,9 +296,9 @@ class ss2(gr.top_block, Qt.QWidget):
     def set_samp_rate_f(self, samp_rate_f):
         self.samp_rate_f = samp_rate_f
         Qt.QMetaObject.invokeMethod(self._samp_rate_f_line_edit, "setText", Qt.Q_ARG("QString", repr(self.samp_rate_f)))
-        self.qtgui_freq_sink_x_0.set_frequency_range(self.center_freq_f, self.samp_rate_f)
-        self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate_f)
         self.qtgui_waterfall_sink_x_0.set_frequency_range(self.center_freq_f, self.samp_rate_f)
+        self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate_f)
+        self.qtgui_freq_sink_x_0.set_frequency_range(self.center_freq_f, self.samp_rate_f)
 
     def get_center_freq_f(self):
         return self.center_freq_f
@@ -299,12 +306,12 @@ class ss2(gr.top_block, Qt.QWidget):
     def set_center_freq_f(self, center_freq_f):
         self.center_freq_f = center_freq_f
         Qt.QMetaObject.invokeMethod(self._center_freq_f_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.center_freq_f)))
-        self.qtgui_freq_sink_x_0.set_frequency_range(self.center_freq_f, self.samp_rate_f)
         self.qtgui_waterfall_sink_x_0.set_frequency_range(self.center_freq_f, self.samp_rate_f)
+        self.qtgui_freq_sink_x_0.set_frequency_range(self.center_freq_f, self.samp_rate_f)
 
 
 def argument_parser():
-    parser = OptionParser(option_class=eng_option, usage="%prog: [options]")
+    parser = OptionParser(usage="%prog: [options]", option_class=eng_option)
     parser.add_option(
         "", "--center-freq", dest="center_freq", type="eng_float", default=eng_notation.num_to_str(0),
         help="Set center_freq [default=%default]")

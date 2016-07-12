@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<block>
+  <name>PyQT Select Input</name>
+  <key>pyqt_select_input</key>
+  <category>pyqt</category>
+  <import>import pyqt</import>
+  <make>#set $win = 'self._%s_win'%$id
+pyqt.select_input(opt=$opt)
+self._$(id)_win = self.$(id);
+$(gui_hint()($win))
+</make>
+
+  <param>
+    <name>GUI Hint</name>
+    <key>gui_hint</key>
+    <value></value>
+    <type>gui_hint</type>
+    <hide>part</hide>
+  </param>
+  
+  <param>
+    <name>Options</name>
+    <key>opt</key>
+    <value>['complex64', 'c_int16', 'c_uint16', 'c_int32', 'c_uint32']</value>
+    <type>raw</type>
+  </param>
+
+  <source>
+    <name>pdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>
