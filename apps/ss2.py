@@ -4,7 +4,7 @@
 # GNU Radio Python Flow Graph
 # Title: Such Samples 2, /tmp/such_samples.cfile Woww!!
 # Author: Tim O'Shea
-# Generated: Tue Jul 12 11:54:01 2016
+# Generated: Tue Jul 12 12:20:31 2016
 ##################################################
 
 if __name__ == '__main__':
@@ -222,7 +222,7 @@ class ss2(gr.top_block, Qt.QWidget):
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
         self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_0_win, 3,2,1,1)
         self.pyqt_set_title_0 = pyqt.set_title(parent=self, prefix="Such Samples: ")
-        self.pyqt_select_input_1 = pyqt.select_input(opt=['c_int16', 'c_uint16', 'c_int32', 'c_uint32', 'complex64', 'float32'])
+        self.pyqt_select_input_1 = pyqt.select_input(opt=['c_int16', 'c_uint16', 'c_int32', 'c_uint32', 'complex64', 'float32', 'c_<i2', 'c_>i2', 'c_<i4', 'c_>i4'])
         self._pyqt_select_input_1_win = self.pyqt_select_input_1;
         self.top_grid_layout.addWidget(self._pyqt_select_input_1_win, 1,2,1,1)
         self.pyqt_range_input_0 = pyqt.range_input()

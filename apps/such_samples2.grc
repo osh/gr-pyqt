@@ -661,7 +661,7 @@
     </param>
     <param>
       <key>opt</key>
-      <value>['c_int16', 'c_uint16', 'c_int32', 'c_uint32', 'complex64', 'float32']</value>
+      <value>['c_int16', 'c_uint16', 'c_int32', 'c_uint32', 'complex64', 'float32', 'c_&lt;i2', 'c_&gt;i2', 'c_&lt;i4', 'c_&gt;i4']</value>
     </param>
   </block>
   <block>
